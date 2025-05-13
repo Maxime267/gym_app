@@ -19,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
             onTap:
                 () => {
                   onItemSelected('Home'),
-                  context.read<DrawerBloc>().updateValue(1),
+                  context.read<DrawerBloc>().updateValue(0),
                 }, // Pass 'Home' when selected
           ),
           ListTile(
@@ -27,7 +27,7 @@ class DrawerWidget extends StatelessWidget {
             onTap:
                 () => {
                   onItemSelected('Settings'),
-                  context.read<DrawerBloc>().updateValue(2),
+                  context.read<DrawerBloc>().updateValue(1),
                 }, // Pass 'Settings' when selected
           ),
           ListTile(
@@ -35,7 +35,7 @@ class DrawerWidget extends StatelessWidget {
             onTap:
                 () => {
                   onItemSelected('Profile'),
-                  context.read<DrawerBloc>().updateValue(3),
+                  context.read<DrawerBloc>().updateValue(2),
                 }, // Pass 'Profile' when selected
           ),
         ],

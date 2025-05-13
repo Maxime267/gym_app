@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   
-  String appBarTitle = 'My App';
+  String appBarTitle = 'Home';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +41,27 @@ class _HomePageState extends State<HomePage> {
             child: Center(child: Text("Value is 1")),
           );
         } else {
-          return Container(color: Colors.red); // Or another widget if value is not 1
+          return HomePageUI();
         }
       },
     )
 
+    );
+  }
+}
+
+class HomePageUI extends StatelessWidget{
+  const HomePageUI({super.key});
+
+  @override
+  Widget build(BuildContext context){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text("Welcome to the Gym App"),
+        Image(image: AssetImage('assets/images/therock.jpeg')),
+      ]
     );
   }
 }
