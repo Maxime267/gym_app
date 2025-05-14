@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/presentation/screen/home_page.dart';
 
+//event
+
 abstract class DrawerEvent {}
 
 class AddDrawerItemEvent extends DrawerEvent {
@@ -16,6 +18,13 @@ class DrawerEventSelectedPage extends DrawerEvent {
   DrawerEventSelectedPage({required this.pagename});
 }
 
+class DrawerEventDelete extends DrawerEvent {
+  final String pagename;
+  DrawerEventDelete({required this.pagename});
+}
+
+//State
+
 class DrawerState {
   final String selectedItem; // Change from int to String
   static final Map<String, WidgetBuilder> items = {
@@ -29,7 +38,13 @@ class DrawerState {
   static void addItem(String itemName, WidgetBuilder page) {
     items[itemName] = page;
   }
+
+  static void deleteItem(String itemName) {
+    items.remove(itemName);
+  }
 }
+
+//Bloc
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
   DrawerBloc() : super(DrawerState('Home')) {
@@ -44,6 +59,11 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
         DrawerState(event.itemName),
       ); // Updating selectedItem to the new item name
     });
+    on<DrawerEventDelete>((event, emit) {
+      DrawerState.deleteItem(event.pagename);
+      emit(DrawerState("Delete"));
+    });
+
     on<DrawerEventSelectedPage>((event, emit) {
       emit(DrawerState(event.pagename));
     });

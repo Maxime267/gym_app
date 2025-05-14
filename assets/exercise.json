@@ -1,0 +1,314 @@
+{
+  "exercise": {
+    "abs": [
+      {
+        "name": "Cable Crunch",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-kneeling-crunch.jpg",
+        "instruction": "Attach a rope handle to the high pulley of a cable machine.\nKneel in front of the machine and hold the rope with both hands, bringing it around your head.\nKeep your knees slightly bent and your hips stationary. This is the starting position.\nEngage your core and pull the rope down by crunching your torso forward.\nContinue to pull the rope towards your knees, focusing on contracting your abs. Keep your elbows fixed.\nRelease the tension and slowly return to the starting position. This is one rep."
+      },
+      {
+        "name": "Lying Floor Leg Raise",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/alternate-lying-floor-leg-raise.jpg",
+        "instruction": "Lay supine in a relaxed position with your legs straight and your hands underneath your low back for support.\nKeep your legs straight and raise them towards your forehead while contracting your abdominals and exhaling.\nOnce your abs are fully contracted and your legs are slightly above parallel, slowly lower your legs back to the starting position.\nComplete for the assigned number of repetitions."
+      },
+      {
+        "name": "Weighted Crunch",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/weighted-crunch.jpg",
+        "instruction": "Lay supine in a relaxed position with your knees bent.\nHold a weight plate directly over your chest and press it to extension.\nRaise your knees to 90 degrees, at which point they will be perpendicular to the floor.\nExhale as you reach towards your toes with the weight plate.\nOnce your abs are fully contracted and your upper back is off the floor, slowly lower yourself back to the starting position.\nComplete for the assigned number of repetitions."
+      },
+      {
+        "name": "Plank",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/front-plank.jpg",
+        "instruction": "Start by lying face down on the floor. Place your forearms on the ground, elbows directly below your shoulders.\nPosition your feet hip-width apart with your toes tucked under.\nPush through your forearms and toes to lift your body off the floor.\nYour body should form a straight line from your head to your heels. Keep your neck neutral by looking straight down, not forward.\nTighten your core (imagine pulling your belly button toward your spine) and squeeze your glutes to prevent your hips from sagging or rising.\nHold the position for as long as you can while maintaining good form."
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/hanging-straight-leg-raise.jpg",
+        "instruction": "Grab a pull-up bar with your palms facing forward (overhand grip) and arms shoulder-width apart.\nHang with your arms fully extended and feet off the ground.\nEngage your abdominal muscles to stabilize your body and minimize swinging. This is the starting position.\nSlowly raise your legs in front of you until they’re about hip or chest height. Keep the movement controlled.\nHold for a second, then slowly lower your legs back to the starting position without swinging.\nRepeat for desired reps."
+      },
+      {
+        "name": "Ab Crunch",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/4-sit-up.jpg",
+        "instruction": "Lay supine in a relaxed position with your knees up and hands across your chest.\nExhale and squeeze your abs as you curl your upper body off the floor.\nOnce your abs are fully contracted and your upper back is off the floor, slowly lower yourself back to the starting position.\nComplete for the assigned number of repetitions."
+      },
+      {
+        "name": "Side Plank",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/side-plank.jpg",
+        "instruction": "Start by laying on your side with one hand on the floor and your feet on top of one another.\nIf you prefer, you can rest on your elbow instead of your hand.\nLift your hips up until your body is exactly straight.\nNow hold this position for as long as possible.\nYou should feel this exercise in your abs and obliques.\nComplete the same for the opposite side of the body."
+      },
+      {
+        "name": "Bicycle Crunch",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/bicycle-crunch.jpg",
+        "instruction": "Lay supine in a relaxed position with your arms behind your head and legs straight.\nExhale as you raise one knee towards your face while driving the opposite elbow to the knee.\nOnce your abs are fully contracted, slowly lower yourself back to the starting position and repeat on the opposite side.\nComplete for the assigned number of repetitions."
+      },
+      {
+        "name": "Russian Twist",
+        "target muscle group": "abs",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/russian-twist.jpg",
+        "instruction": "Set up for the Russian Twist by getting a mat and laying down on your back.\nPull your knees up so that your calves are at a right angle to your thighs.\nPut one hand over the other, palms facing your feet and point towards the ceiling.\nTo begin the set, raise your shoulder blades off the mat.\nTwisting at your torso, roll your hands over to the left and back to the right.\nLower your shoulder blades back down to the mat.\nRepeat the whole movement for the required reps."
+      }
+    ],
+    "biceps": [
+      {
+        "name": "Dumbbell Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-seated-bicep-curl.jpg",
+        "instruction": "Position an incline bench at roughly 55-65 degrees, select the desired weight from the rack, and sit upright with your back flat against the pad.\nUsing a supinated (palms up) grip, take a deep breath and curl both dumbbells towards your shoulders.\nOnce the biceps are fully shortened, slowly lower the weights back to the starting position.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Dumbbell Hammer Preacher Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-hammer-preacher-curl.jpg",
+        "instruction": "Select the desired weight from the rack, and sit in an upright position with your chest flat against the preacher bench.\nKeep your upper arm pressed into the pad and use a neutral (palms facing up) grip.\nTake a deep breath and slowly lower the dumbbell away from your shoulder.\nOnce the bicep is fully lengthened, curl the weight back to the starting position.\nRepeat for the desired number of repetitions on both sides."
+      },
+      {
+        "name": "Standing Barbell Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-curl.jpg",
+        "instruction": "Grasp a barbell or EZ bar with an underhand grip and stand with your feet around shoulder-width apart. This is the starting position for the exercise.\nBending at the elbows, slowly curl the weight up as far as possible.\nSqueeze the biceps, and then slowly lower the weight back to the starting position. This is one rep.\nRepeat for desired reps."
+      },
+      {
+        "name": "Incline Hammer Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-incline-hammer-curl.jpg",
+        "instruction": "Set up for the incline hammer curl by setting the bench at a 30-45 degree incline and setting a pair of dumbbells at the end. The lower the incline, the more challenging the exercise will be so 30 degrees is preferred.\nSit on the bench, pick up the dumbbells, and lay back with your back flat on the padding.\nYou should be holding the dumbbells with a neutral grip, palms facing toward your body.\nTake up the slack in your arms by slightly bending them - this will put tension on the biceps. This is the starting position for the exercise.\nWith your elbows fixed, slowly curl the dumbbells up as far as possible.\nSqueeze the biceps at the top of the movement, and then slowly lower the weights back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Standing High Pulley Cable Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-overhead-curl.jpg",
+        "instruction": "For the standing high pulley cable curl, you'll need a cable machine with two high pulley cable attachments.\nSet up by attaching a single grip handle to each of the high pulley cables and selecting the weight you want to use on the stack.\nGrip each of the cables with an underhand grip (palms facing up) and stand in the center with your arms outstretched. This is the starting position.\nKeeping your upper arms and body fixed, curl the handles in towards your body as close as possible.\nPause, and then slowly lower the weight back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Lateral Pulldown Bicep Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-pulldown-bicep-curl.jpg",
+        "instruction": "Set up by adjusting the knee pad to suit your legs and selecting the weight you want to use on the stack.\nGrip the bar with an underhand grip (palms facing up) with your hands about shoulder-width apart.\nSit down on the bench with your arms fully extended. This is the starting position for the exercise.\nKeeping your upper arms and elbows fixed, slowly curl the weight behind your head.\nPause, and then slowly lower the weight back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Cable Drag Curl",
+        "target muscle group": "biceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-drag-curl.jpg",
+        "instruction": "Set up for the cable drag curl by attaching a straight bar to the low pulley cable machine and selecting the weight you want to use from the stack.\nStand close to the machine and grasp the straight bar with an underhand grip (palms facing up).\nHolding the bar around 1-2 inches from your body, pull the bar straight up keeping it as close as possible to your body without touching it.\nOnce you've raised the bar as far as possible, pause, and then slowly lower the bar back to the starting position.\nRepeat for desired reps."
+      }
+    ],
+    "chest": [
+      {
+        "name": "Dumbbell Pullover",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-pullover.jpg",
+        "instruction": "Lie on a bench, with your upper back and shoulders supported, and feet flat on the floor.\nHold one dumbbell with both hands, palms pressed together, and arms extended straight above your chest. This is the starting position.\nSlowly lower the dumbbell in an arc behind your head, keeping a slight bend in your elbows.\nFeel a stretch in your chest and lats as the dumbbell lowers.\nBring the dumbbell back up to the starting position. This is one rep.\nPerform the desired reps, focusing on control and muscle engagement."
+      },
+      {
+        "name": "Lever Seated Fly",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-fly.jpg",
+        "instruction": "Adjust the seat and set the height so your elbows are at chest level when sitting.\nPlace your arms on the pads or grips with elbows bent at 90 degrees.\nKeep your feet flat on the floor for stability. This is the starting position.\nSlowly bring your arms forward, squeezing your chest.\nBriefly squeeze your chest at the peak of the movement.\nControl the movement as you slowly return to the starting position. This is one rep.\nRepeat for desired repetitions."
+      },
+      {
+        "name": "Barbell Bench Press",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-bench-press.jpg",
+        "instruction": "Lie flat on a bench and set your hands just outside of shoulder width.\nSet your shoulder blades by pinching them together and driving them into the bench.\nTake a deep breath and allow your spotter to help you with the lift off in order to maintain tightness through your upper back.\nLet the weight settle and ensure your upper back remains tight after lift off.\nInhale and allow the bar to descend slowly by unlocking the elbows.\nLower the bar in a straight line to the base of the sternum (breastbone) and touch the chest.\nPush the bar back up in a straight line by pressing yourself into the bench, driving your feet into the floor for leg drive, and extending the elbows.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Push Up",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/push-up-w.jpg",
+        "instruction": "Assume a quadruped position on the floor with your hands under your shoulders, toes tucked, and knees under hips.\nExtend one leg at a time and assume a pushup position with the legs straight, elbows extended, and head in a neutral position looking at the floor.\nSlowly descend to the floor by retracting the shoulder blades and unlocking the elbows.\nDescend until the upper arms are parallel or your chest touches the floor.\nPush back to the starting point by extending the elbows and driving your palms into the floor.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Dumbbell Bench Press",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-bench-press.jpg",
+        "instruction": "Pick up the dumbbells off the floor using a neutral grip (palms facing in).\nPosition the ends of the dumbbells in your hip crease, and sit down on the bench.\nTo get into position, lay back and keep the weights close to your chest.\nOnce you are in position, take a deep breath, and press the dumbbells to lockout at the top.\nSlowly lower the dumbbells under control as far as comfortably possible (the handles should be about level with your chest).\nContract the chest and push the dumbbells back up to the starting position.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Cable Iron Cross",
+        "target muscle group": "chest",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-crossover-variation.jpg",
+        "instruction": "Set both pulleys as high as possible and select the desired weight.\nGrasp both handles with a neutral grip and keep your feet in line with the pulleys.\nRemain upright, keep a slight bend in the elbows, move entirely at the shoulder joint, and pull both handles together in front of your body.\nSlowly lower back to the starting position and repeat for the desired number of repetitions."
+      }
+    ],
+    "forearms": [
+      {
+        "name": "Reverse Grip Barbell Wrist Curl",
+        "target muscle group": "forearms",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-palms-down-wrist-curl-over-a-bench.jpg",
+        "instruction": "Grab a barbell using a pronated grip (palm facing down) and kneel in front of a flat bench. Position your hands around shoulder-width apart.\nRest the back of your forearms on top of the bench so that your writs are just off the end of it.\nBending only at the wrists, let the barbell drop as far as possible. This is the starting position for the exercise.\nSlowly curl the barbell up towards your body using your wrists. Squeeze the forearm muscles at the top of the movement.\nPause, and then slowly lower the barbell back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Weight Plate Pinches",
+        "target muscle group": "forearms",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/plate-pinch.jpg",
+        "instruction": "To complete this exercise grasp a weight plate (or two if you can) between your two index fingers and your thumb.\nStand up straight and hold the weight plate with your fingers as long as possible.\nIf you can hold it longer than 30 seconds, use a heavier plate or two small plates together."
+      },
+      {
+        "name": "Barbell Reverse Preacher Curl",
+        "target muscle group": "forearms",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-reverse-preacher-curl.jpg",
+        "instruction": "Setup for the exercise by adjusting the seat height of the preacher bench so that the back of your upper arms rest flat on the pads.\nSelect an EZ bar, grasp it using a pronated grip (palms facing down), and sit on the bench.\nKeeping your arms fixed, curl the weight until your forearms are around 90 degrees to the floor.\nDo not pause, and slowly lower the weight back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Barbell Suitcase Carry",
+        "target muscle group": "forearms",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-suitcase-carry.jpg",
+        "instruction": "Load a barbell and set up perpendicular to the bar.\nGrasp the bar with a neutral grip and stand up straight.\nWhile maintaining an active shoulder position, hold the barbell by your side and walk for a designated distance or amount of time."
+      }
+    ],
+    "lats": [
+      {
+        "name": "Lat Pull Down",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-bar-lateral-pulldown.jpg",
+        "instruction": "Attach a wide grip handle to the lat pulldown machine and assume a seated position.\nGrasp the handle with a pronated grip (double overhand) and initiate the movement by depressing the shoulder blade and then flexing the elbow while extending the shoulder.\nPull the handle towards your body until the elbows are in line with your torso and then slowly lower the handle back to the starting position under control.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Wide Grip Pull Up",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/wide-grip-pull-up.jpg",
+        "instruction": "Using a pronated grip, grasp the pull bar with a wider than shoulder width grip.\nTake a deep breath, squeeze your glutes and brace your abs.\nDepress the shoulder blades and then drive the elbows straight down to the floor while activating the lats.\nPull your chin towards the bar until the lats are fully contracted, then slowly lower yourself back to the start position and repeat for the assigned number of repetitions."
+      },
+      {
+        "name": "Close Grip Pull Up",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/close-grip-pull-up.jpg",
+        "instruction": "Using a pronated grip, grasp the pull bar with a shoulder width grip.\nTake a deep breath, squeeze your glutes and brace your abs.\nDepress the shoulder blades and then drive the elbows straight down to the floor while activating the lats.\nPull your chin towards the bar until the lats are fully contracted, then slowly lower yourself back to the start position and repeat for the assigned number of repetitions."
+      },
+      {
+        "name": "Straight Arm Lat Pull Down",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-straight-arm-pulldown.jpg",
+        "instruction": "Attach a wide grip handle to a cable stack and assume a standing position.\nGrasp the handle with a pronated grip (double overhand) at roughly shoulder width and lean forward slightly by hinging at the hips.\nKeep the elbow slightly flexed and initiate the movement by depressing the shoulder blades and extending the shoulders.\nPull the bar to your thigh until the lats are fully contracted and then slowly lower under control.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Rope Straight Arm Pull Down",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/band-straight-arm-pulldown.jpg",
+        "instruction": "Attach a rope to a cable stack and assume a standing position.\nGrasp the rope with a neutral grip (palms facing) and lean forward slightly by hinging at the hips.\nKeep the elbow slightly flexed and initiate the movement by depressing the shoulder blades and extending the shoulders.\nPull the rope toward your thigh until the lats are fully contracted and then slowly lower under control.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Standing Overhead Medicine Ball Throw",
+        "target muscle group": "lats",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/medicine-ball-standing-overhead-throw.jpg",
+        "instruction": "Setup in an athletic base position while holding a medicine ball at your chest with a soft bend in your knees.\nRise up and extend the arms overhead with the medicine ball.\nExhale, pull the arms forward towards the wall, and aggressively throw the med ball into wall directly in front of you.\nCatch the med ball as it returns from the wall and repeat step #2 for the desired number of repetitions."
+      }
+    ],
+    "shoulders": [
+      {
+        "name": "Dumbbell Lateral Raise",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lateral-raise.jpg",
+        "instruction": "Select the desired weight from the rack, then take a few steps back into an open area.\nTake a deep breath and raise the dumbbells to shoulder height using a neutral grip (palms facing in) while keeping the elbows slightly bent.\nSlowly lower the dumbbells back to the starting position under control.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Military Press",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-standing-military-press.jpg",
+        "instruction": "Adjust the barbell to just below shoulder height then load the desired weight onto the bar.\nAssume a shoulder width stance and place your hands at (or just outside of) shoulder width with a pronated grip on the bar.\nStep underneath the bar and unrack it while keeping the spine in a neutral position.\nTake two steps back, inhale, brace, tuck the chin, then press the bar to lockout overhead.\nExhale once the bar gets to lockout and reverse the movement slowly while controlling the bar back to your chest.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Seated Dumbbell Press",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-seated-shoulder-press.jpg",
+        "instruction": "Set up an adjustable angle bench to 90 degrees and select the desired weight from the rack.\nPick up the dumbbells from the floor using a neutral grip (palms facing in). Position the end of the dumbbells on your knees and sit down on the bench.\nUsing a safe and controlled motion, kick your knees up one at a time in order to get each dumbbell into place.\nOnce the dumbbells are in place, rotate your palms so they are facing forward.\nTake a deep breath then press the dumbbells overhead by extending the elbows and contracting the deltoids.\nSlowly lower the dumbbells back to the starting position (the arms should be roughly 90 degrees or slightly lower depending upon limb lengths).\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Cable Face Pull",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-face-pull.jpg",
+        "instruction": "Assume a split stance with the arms straight out in front of you utilizing a pronated grip.\nInhale and pull the rope towards your face with the elbows high.\nSlowly lower the rope back to the starting position and repeat for the desired number of repetitions."
+      },
+      {
+        "name": "Machine Reverse Fly",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-reverse-fly.jpg",
+        "instruction": "Face the fly machine while seated with your chest against the pad and the handles positioned in front of your torso.\nReach forward and grasp each handle with a pronated or neutral grip.\nContract the rear delts while keeping the elbows bent and open the arms in a reverse fly motion.\nSlowly lower the handles back to the starting position and repeat for the desired number of repetitions."
+      },
+      {
+        "name": "Cable Lateral Raise",
+        "target muscle group": "shoulders",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-lateral-raise.jpg",
+        "instruction": "Set the pulleys of a dual cable machine to the low setting and select the weight you wish to use.\nStand facing away from the machine and grasp opposite handles with opposite hands.\nStand straight up with your arms in front of you (crossed over). The weight should be slightly off the stack. This is the starting position for the movement.\nKeeping your elbows high, extend your arms out in a semi-circle motion.\nOnce your hands get to around shoulder height, pause and slowly lower the weight back to the starting position.\nRepeat for desired reps."
+      }
+    ],
+    "traps": [
+      {
+        "name": "Barbell Upright Row",
+        "target muscle group": "traps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-upright-row.jpg",
+        "instruction": "Stand with feet shoulder-width apart. Grip the barbell with hands about shoulder-width apart, palms facing your thighs.\nHold the barbell firmly in front of your thighs. Stand tall, chest up, and shoulders back. This is the starting position.\nLift the bar straight up along your body, leading with your elbows. Keep the bar close to your torso.\nRaise the bar around chest level, with your elbows higher than your wrists.\nSlowly lower the bar back to the starting position, maintaining control. This is one rep.\nPerform the desired number of repetitions, focusing on form and controlled movements."
+      },
+      {
+        "name": "Barbell Shrug",
+        "target muscle group": "traps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-shrug.jpg",
+        "instruction": "Position the safeties just below waist height in a rack.\nAssume a standing position with the bar in front of your body.\nHinge forward, inhale, and grab the bar with a double overhand grip.\nStand up tall and ensure your spine remains neutral.\nContract the traps to elevate the shoulders. Squeeze hard at the top and slowly lower the bar back to the starting position.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Seated Cable Row",
+        "target muscle group": "traps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-rope-seated-row.jpg",
+        "instruction": "Set the appropriate weight on the weight stack and attach a close-grip bar or V-bar to the seated row machine.\nGrasp the bar with a neutral grip (palms facing in).\nKeeping your legs slightly bent and your back straight, pull the weight up slightly off the stack. You should be sitting straight upright with your shoulders back. This is the starting position.\nKeeping your body in position, pull the handle into your stomach.\nPull your shoulder blades back, squeeze, pause, and then slowly lower the weight back to the starting position.\nRepeat for desired reps."
+      },
+      {
+        "name": "Commando Pull Up",
+        "target muscle group": "traps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/commando-pull-up.jpg",
+        "instruction": "Find a pull-up bar and grip it with your palms facing away from you, shoulder-width apart.\nEngage your core and pull your shoulder blades down and back.\nBegin to pull yourself up towards the bar, leading with your chest.\nAs you pull up, bring one knee towards your chest and twist your torso towards that knee.\nLower yourself back down to the starting position and repeat on the other side.\nContinue alternating sides with each repetition."
+      },
+      {
+        "name": "Cable Upper Row",
+        "target muscle group": "traps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-upper-row.jpg",
+        "instruction": "Attach a cable handle to a high pulley on a cable machine.\nStand facing the machine with your feet shoulder-width apart and your knees slightly bent.\nGrasp the handle with both hands, palms facing down.\nEngage your core and pull the handle towards your chest, keeping your elbows close to your body.\nPause for a moment at the top of the movement, squeezing your shoulder blades together.\nSlowly release the handle back to the starting position.\nRepeat for the desired number of repetitions."
+      }
+    ],
+    "triceps": [
+      {
+        "name": "Barbell Pullover",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/barbell-bent-arm-pullover.jpg",
+        "instruction": "Select your desired weight and sit on the edge of a flat bench.\nTo get into position, lay back and keep the bar close to your chest. Once you are supine, press the weight to lockout.\nLower the weights towards your head by unlocking the elbows and allowing the ez bar to drop toward your forehead or just above.\nOnce your forearms reach parallel or just below, reverse the movement by extending the elbows while flexing the triceps to lockout the weight.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Straight Bar Tricep Extension",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-pushdown.jpg",
+        "instruction": "Attach a straight bar to a cable stack as high as possible and assume a standing position.\nGrasp the straight bar with a pronated grip (palms facing down) and lean forward slightly by hinging at the hips.\nInitiate the movement by extending the elbows and flexing the triceps.\nPull the handle downward until the elbows are almost locked out and then slowly lower under control back to the starting position.\nRepeat for the desired number of repetitions."
+      },
+      {
+        "name": "Triceps Dip",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/triceps-dip.jpg",
+        "instruction": "Grab the parallel dip bars with an inward grip.\nIf the bars are adjustable, adjust them to around shoulder-width apart.\nJump up off the floor and take your weight on the bars.\nThe key to hitting your triceps on this version of the dip is to keep your body as straight as possible and don't lean forward. This may mean not crossing your legs and keeping them hanging down.\nSlowly lower yourself down, keeping your eyes facing forward.\nLower until your elbow is at around the same height as your shoulder, and then raise your body back up without locking your arms at the top of the movement.\nRepeat for desired reps."
+      },
+      {
+        "name": "French Press",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/ez-bar-standing-french-press.jpg",
+        "instruction": "Set up for the french press by loading a barbell or EZ-bar with the appropriate amount of weight and placing it on the floor in front of you.\nBend only at the knees and grasp the barbell with an overhand grip (palms facing down) with your hands about 8-12 inches apart.\nStand up straight with the bar with your feet around shoulder-width apart and a slight bend in your knees.\nLift the bar above your head and bend at your elbows slightly to take the tension onto your triceps. Your palms are now facing upward. This is the starting position for the exercise.\nKeeping your elbows fixed and pointing straight up toward the ceiling, slowly lower the bar down behind your head as far as comfortably possible.\nPause, and then slowly raise the bar back to the starting position.\nDon't lock your elbows out, and then repeat the movement."
+      },
+      {
+        "name": "Diamond Push Up",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/diamond-push-up.jpg",
+        "instruction": "Set up by placing your palms on the floor with your thumbs touching one another.\nExtend your legs back so that only your toes are touching the floor and your body is straight.\nBend slightly at the elbows to keep tension in your triceps.\nKeeping your body straight, slowly lower yourself as far as possible without hitting the floor.\nPause, and then push back up to the starting position without locking your elbows out.\nRepeat for desired reps."
+      },
+      {
+        "name": "One-Arm Cable Tricep Extension",
+        "target muscle group": "triceps",
+        "image": "https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-tricep-pushdown.jpg",
+        "instruction": "Set up for the one-arm cable tricep extension by attaching a single grip handle to a high pulley cable and selecting the weight you want to use on the stack.\nStand facing the machine and grab the handle with an overhand grip.\nPull your elbow down and keep it tucked in at your side. You can use your free arm for support.\nKeeping your body fixed, slowly extend the arm as far as possible.\nPause and squeeze the tricep muscle, and then slowly lower the weight.\nRepeat this motion for desired reps, and then repeat for the right arm."
+      }
+    ]
+  }
+}
