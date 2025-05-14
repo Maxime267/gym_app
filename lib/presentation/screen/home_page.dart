@@ -12,23 +12,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Home")), // Can use appBarTitle if needed
-      drawer: DrawerWidget(),
-      body: BlocBuilder<DrawerBloc, DrawerState>(
-        builder: (context, state) {
-          print(state.selectedItem);
-          if (state.selectedItem == 'Home') {
-            return HomePageUI(); // Replace with your HomePage UI
-          } else if (state.selectedItem == 'Profile') {
-            return TestPageUI(); // Replace with your ProfilePage UI
-          }
+    return BlocBuilder<DrawerBloc, DrawerState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(title: Text("Home")), // Can use appBarTitle if needed
+          drawer: DrawerWidget(),
+          body: BlocBuilder<DrawerBloc, DrawerState>(
+            builder: (context, state) {
+              print(state.selectedItem);
 
-          return Container(); // Return a fallback UI
-        },
-      ),
+              if (state.selectedItem.startsWith('Session')) {
+                final pageBuilder = DrawerState.items[state.selectedItem];
+                if (pageBuilder != null) {
+                  return pageBuilder(context);
+                }
+              } 
+              else {
+                return HomePageUI();
+              }
+              return Container();
+            },
+          ),
+        );
+      },
     );
   }
 }

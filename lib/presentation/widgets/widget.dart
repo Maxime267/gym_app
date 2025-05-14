@@ -9,7 +9,6 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myMap = DrawerState.items;
-    final drawerbloc = BlocProvider.of<DrawerBloc>(context);
 
     return Drawer(
       child: ListView(
@@ -20,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
               // Dispatch AddDrawerItemEvent to add a new item to the drawer
               context.read<DrawerBloc>().add(
                 AddDrawerItemEvent(
-                  itemName: 'Profile', // Name of the item
+                  itemName: 'Session ${DrawerState.items.length + 1}', // Name of the item
                   itemPage:
                       (context) =>
                           TestPageUI(), // Widget to display for the item
@@ -29,9 +28,14 @@ class DrawerWidget extends StatelessWidget {
             },
             child: Text("Add Session"),
           ),
+          
+
 
           // Display the drawer items using ListView.builder
-          ListView.builder(
+          ListView.separated(
+            separatorBuilder: (context,index) => Divider(
+              color: Colors.black,
+            ),
             shrinkWrap:
                 true, // Ensures the list view takes only as much space as needed
             itemCount: myMap.length,
@@ -40,18 +44,34 @@ class DrawerWidget extends StatelessWidget {
               final key = entry.key;
               final value = entry.value;
 
-              return ListTile(
-                title: Text(key), // Display item name
-                onTap: () {
-                  // When an item is tapped, navigate to the corresponding page
-                  print("key : " + key);
-                  drawerbloc.add(DrawerEventSelectedPage(pagename: key));
-                  Navigator.pop(context); // Close the drawer
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                },
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text(key), // Display item name
+                    onTap: () {
+                      // When an item is tapped, navigate to the corresponding page
+                      print("key : " + key);
+                      context.read<DrawerBloc>().add(
+                        DrawerEventSelectedPage(pagename: key),
+                      );
+                      Navigator.pop(context); // Close the drawer
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      print("Trashed" + key);
+                      context.read<DrawerBloc>().add(
+                        DrawerEventDelete(pagename: key),
+                      );
+                    },
+                    icon: Icon(Icons.delete),
+                    label: Text("Delete"),
+                  ),
+                ],
               );
             },
           ),
