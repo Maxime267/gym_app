@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym_app/presentation/screen/home_page.dart';
-import 'logic/bloc/bloc.dart';
+import 'logic/bloc/drawer.dart';
 
 void main() {
   runApp(
