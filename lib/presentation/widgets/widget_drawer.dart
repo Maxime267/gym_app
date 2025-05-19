@@ -11,90 +11,110 @@ class DrawerWidget extends StatelessWidget {
     final myMap = DrawerState.items;
 
     return Drawer(
-      child: ListView(
+      child: 
+      Column(
         children: [
-          // Button to add a new session/item to the drawer
-          ElevatedButton(
-            onPressed: () {
-              // Dispatch AddDrawerItemEvent to add a new item to the drawer
-              context.read<DrawerBloc>().add(
-                AddDrawerItemEvent(
-                  itemName: nameSession(), // Name of the item
-                  itemPage:
-                      (context) =>
-                          TestPageUI(), // Widget to display for the item
-                ),
-              );
-            },
-            child: Text("Add Session"),
-          ),
-          
+          SizedBox(height: 30,),
 
-
-          // Display the drawer items using ListView.builder
-          ListView.separated(
-            separatorBuilder: (context,index) => Divider(
-              color: Colors.black,
-            ),
-            shrinkWrap:
-                true, // Ensures the list view takes only as much space as needed
-            itemCount: myMap.length,
-            itemBuilder: (context, index) {
-              final entry = myMap.entries.elementAt(index);
-              final key = entry.key;
-              final value = entry.value;
-
-              return Column(
-                children: [
-                  BlocBuilder<DrawerBloc, DrawerState>(
-                    builder: (context, state) {
-                    if(state.action == "RenameButton" && state.selectedItemId == key){
-                      return TextField(
-                        //onSubmitted: ,
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                    onPressed: () {
+                      context.read<DrawerBloc>().add(
+                        AddDrawerItemEvent(
+                          itemName: nameSession(),
+                          itemPage:
+                              (context) =>
+                                  TestPageUI(),
+                        ),
                       );
-                    }
-                    else{
-                     return ListTile(
-                      title: Text(DrawerState.items[key]?.name ?? 'Unknown'), 
-                      onTap: () {
-                        context.read<DrawerBloc>().add(
-                          DrawerEventSelectedPage(pageid: key),
-                        );
-                        Navigator.pop(context); //Close drawer
-                      },
-                      );
-                      }
-                    }
+                    },
+                    child: Text("Add Session"),
                   ),
-
-                  if(key != 1) Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        print("Trashed" + "$key");
-                        context.read<DrawerBloc>().add(
-                          DrawerEventDelete(pageid: key),
-                        );
-                      },
-                      icon: Icon(Icons.delete),
-                      label: Text("Delete"),
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        print("Rename " + "$key");
-                        context.read<DrawerBloc>().add(
-                          DrawerEventRenameButton(pageid: key),
-                        );
-                      },
-                      icon: Icon(Icons.edit),
-                      label: Text("Rename"),
-                    ),
-                  ])
-                ],
-              );
-            },
+              IconButton(
+                onPressed: () {
+                  //TODO setting send page
+                },
+                icon: Icon(Icons.settings),
+                tooltip: 'Settings',
+              )
+            ],
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                ListView.separated(
+                  separatorBuilder: (context,index) => Divider(
+                    color: Colors.black,
+                  ),
+                  shrinkWrap:
+                      true,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: myMap.length,
+                  itemBuilder: (context, index) {
+                    final entry = myMap.entries.elementAt(index);
+                    final key = entry.key;
+                    //final value = entry.value;
+            
+                    return Column(
+                      children: [
+                        BlocBuilder<DrawerBloc, DrawerState>(
+                          builder: (context, state) {
+                          if(state.action == "RenameButton" && state.selectedItemId == key){
+                            return TextField(
+                              onSubmitted: (newName){
+                                context.read<DrawerBloc>().add(
+                                  DrawerEventRenameText(pageid: state.selectedItemId, newName: newName),
+                                );
+                              },
+                            );
+                          }
+                          else{
+                           return ListTile(
+                            title: Text(DrawerState.items[key]?.name ?? 'Unknown'), 
+                            onTap: () {
+                              context.read<DrawerBloc>().add(
+                                DrawerEventSelectedPage(pageid: key),
+                              );
+                              Navigator.pop(context); //Close drawer
+                            },
+                            );
+                            }
+                          }
+                        ),
+            
+                        if(key != 1) Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          IconButton(
+                            onPressed: () {
+                              print("Trashed" + "$key");
+                              context.read<DrawerBloc>().add(
+                                DrawerEventDelete(pageid: key),
+                              );
+                            },
+                            icon: Icon(Icons.delete),
+                            tooltip: "Delete",
+                          ),
+                          Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              print("Rename " + "$key");
+                              context.read<DrawerBloc>().add(
+                                DrawerEventRenameButton(pageid: key),
+                              );
+                            },
+                            icon: Icon(Icons.edit),
+                            tooltip: "Rename",
+                          ),
+                        ]),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),

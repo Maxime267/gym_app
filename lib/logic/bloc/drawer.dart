@@ -30,7 +30,8 @@ class DrawerEventRenameButton extends DrawerEvent {
 
 class DrawerEventRenameText extends DrawerEvent {
   final int pageid;
-  DrawerEventRenameText({required this.pageid});
+  final String newName;
+  DrawerEventRenameText({required this.pageid, required this.newName});
 }
 
 //State
@@ -102,5 +103,11 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     on<DrawerEventRenameButton>((event, emit) {
       emit(DrawerState("RenameButton", event.pageid));
     });
+
+    on<DrawerEventRenameText>((event, emit) {
+      DrawerState.renameItem(event.pageid,event.newName);
+      emit(DrawerState("RenameText", event.pageid));
+    });
+    
   }
 }
