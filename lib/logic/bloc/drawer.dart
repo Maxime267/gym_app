@@ -14,60 +14,93 @@ class AddDrawerItemEvent extends DrawerEvent {
 }
 
 class DrawerEventSelectedPage extends DrawerEvent {
-  final String pagename;
-  DrawerEventSelectedPage({required this.pagename});
+  final int pageid;
+  DrawerEventSelectedPage({required this.pageid});
 }
 
 class DrawerEventDelete extends DrawerEvent {
-  final String pagename;
-  DrawerEventDelete({required this.pagename});
+  final int pageid;
+  DrawerEventDelete({required this.pageid});
+}
+
+class DrawerEventRenameButton extends DrawerEvent {
+  final int pageid;
+  DrawerEventRenameButton({required this.pageid});
+}
+
+class DrawerEventRenameText extends DrawerEvent {
+  final int pageid;
+  DrawerEventRenameText({required this.pageid});
 }
 
 //State
 
+class DrawerItemData {
+  String name;
+  final WidgetBuilder builder;
+
+  DrawerItemData({
+    required this.name,
+    required this.builder,
+  });
+}
+
+
 class DrawerState {
-  final String selectedItem; // Change from int to String
-  static final Map<String, WidgetBuilder> items = {
-    'Home': (context) => HomePageUI(),
-    // Other default items here
+  final int selectedItemId;
+  final String action;
+  static final Map<int, DrawerItemData> items = {
+    1: DrawerItemData(
+      name: 'Home',
+      builder: (context) => HomePageUI(),
+    ),
   };
+  DrawerState(this.action, this.selectedItemId);
 
-  DrawerState(this.selectedItem);
-
+  static int _nextId = 2;
   // Method to add a new item to the items map
-  static void addItem(String itemName, WidgetBuilder page) {
-    items[itemName] = page;
+  static void addItem(String name, WidgetBuilder page) {
+    items[_nextId] = DrawerItemData(
+      name: name,
+      builder: page,
+    );
+    _nextId++;
   }
 
-  static void deleteItem(String itemName) {
-    items.remove(itemName);
+  static void deleteItem(int itemID) {
+    items.remove(itemID);
   }
+
+  static void renameItem(int id, String newName) {
+    if (items.containsKey(id)) {
+      items[id]!.name = newName;
+    }
+  }
+
 }
 
 //Bloc
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
-  DrawerBloc() : super(DrawerState('Home')) {
-    // Default state is 'Home'
+  DrawerBloc() : super(DrawerState('Select', 1)) { // Default state is 'Home' (id : 1 = home)
     on<AddDrawerItemEvent>((event, emit) {
-      // Logic to add a new item to the drawer
-      // Since DrawerState.items is static, we handle adding items directly
       DrawerState.addItem(event.itemName, event.itemPage);
-
-      // Emit new state with the updated selected item (you can decide the logic here)
       emit(
-        DrawerState(event.itemName),
-      ); // Updating selectedItem to the new item name
+        DrawerState("Add", 0), // 0 is random value just not to cause error
+      );
     });
     on<DrawerEventDelete>((event, emit) {
-      DrawerState.deleteItem(event.pagename);
-      emit(DrawerState("Delete"));
+      DrawerState.deleteItem(event.pageid);
+      emit(DrawerState("Delete", event.pageid));
     });
 
     on<DrawerEventSelectedPage>((event, emit) {
-      emit(DrawerState(event.pagename));
+      emit(DrawerState("Select", event.pageid));
     });
 
-    // You can add more event handlers here if needed
+    //When rename button is pressed
+    on<DrawerEventRenameButton>((event, emit) {
+      emit(DrawerState("RenameButton", event.pageid));
+    });
   }
 }

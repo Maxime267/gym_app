@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym_app/presentation/screen/exercise_details.dart';
 import '../../logic/bloc/drawer.dart';
-import '../widgets/widget.dart';
+import '../widgets/widget_drawer.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -18,13 +18,19 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<DrawerBloc, DrawerState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: Text(state.selectedItem)), // Can use appBarTitle if needed
+          appBar: AppBar(
+            title: Text(
+              state.action == "Select" && DrawerState.items.containsKey(state.selectedItemId)
+                  ? DrawerState.items[state.selectedItemId]!.name
+                  : 'Home',
+            ),
+          ),
           drawer: DrawerWidget(),
           body: () {
-            if (state.selectedItem.startsWith('Session')) {
-              final pageBuilder = DrawerState.items[state.selectedItem];
+            if (state.action == "Select") {
+              final pageBuilder = DrawerState.items[state.selectedItemId];
               if (pageBuilder != null) {
-                return pageBuilder(context);
+                return pageBuilder.builder(context);
               } else {
                 return Center(child: Text("Page not found"));
               }

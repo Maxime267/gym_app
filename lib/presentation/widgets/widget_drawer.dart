@@ -19,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
               // Dispatch AddDrawerItemEvent to add a new item to the drawer
               context.read<DrawerBloc>().add(
                 AddDrawerItemEvent(
-                  itemName: nameSeesion(), // Name of the item
+                  itemName: nameSession(), // Name of the item
                   itemPage:
                       (context) =>
                           TestPageUI(), // Widget to display for the item
@@ -46,35 +46,52 @@ class DrawerWidget extends StatelessWidget {
 
               return Column(
                 children: [
-                  ListTile(
-                    title: Text(key), // Display item name
-                    onTap: () {
-                      // When an item is tapped, navigate to the corresponding page
-                      print("key : " + key);
-                      context.read<DrawerBloc>().add(
-                        DrawerEventSelectedPage(pagename: key),
+                  BlocBuilder<DrawerBloc, DrawerState>(
+                    builder: (context, state) {
+                    if(state.action == "RenameButton" && state.selectedItemId == key){
+                      return TextField(
+                        //onSubmitted: ,
+
                       );
-                      Navigator.pop(context); // Close the drawer
-                      /*
-                      /// not useful i keep it just in case
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                    }
+                    else{
+                     return ListTile(
+                      title: Text(DrawerState.items[key]?.name ?? 'Unknown'), 
+                      onTap: () {
+                        context.read<DrawerBloc>().add(
+                          DrawerEventSelectedPage(pageid: key),
+                        );
+                        Navigator.pop(context); //Close drawer
+                      },
                       );
-                      */
-                    },
+                      }
+                    }
                   ),
-                  if(key != 'Home') ElevatedButton.icon(
-                    onPressed: () {
-                      print("Trashed" + key);
-                      context.read<DrawerBloc>().add(
-                        DrawerEventDelete(pagename: key),
-                      );
-                    },
-                    icon: Icon(Icons.delete),
-                    label: Text("Delete"),
-                  ),
-                  
+
+                  if(key != 1) Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        print("Trashed" + "$key");
+                        context.read<DrawerBloc>().add(
+                          DrawerEventDelete(pageid: key),
+                        );
+                      },
+                      icon: Icon(Icons.delete),
+                      label: Text("Delete"),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        print("Rename " + "$key");
+                        context.read<DrawerBloc>().add(
+                          DrawerEventRenameButton(pageid: key),
+                        );
+                      },
+                      icon: Icon(Icons.edit),
+                      label: Text("Rename"),
+                    ),
+                  ])
                 ],
               );
             },
@@ -95,9 +112,9 @@ class TestPageUI extends StatelessWidget {
 }
 
 
-String nameSeesion(){
- int index = 1;
-  while (DrawerState.items.containsKey('Session $index')) {
+String nameSession() {
+  int index = 1;
+  while (DrawerState.items.values.any((item) => item.name == 'Session $index')) {
     index++;
   }
   return 'Session $index';
