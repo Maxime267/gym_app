@@ -18,24 +18,20 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<DrawerBloc, DrawerState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: Text("Home")), // Can use appBarTitle if needed
+          appBar: AppBar(title: Text(state.selectedItem)), // Can use appBarTitle if needed
           drawer: DrawerWidget(),
-          body: BlocBuilder<DrawerBloc, DrawerState>(
-            builder: (context, state) {
-              print(state.selectedItem);
-
-              if (state.selectedItem.startsWith('Session')) {
-                final pageBuilder = DrawerState.items[state.selectedItem];
-                if (pageBuilder != null) {
-                  return pageBuilder(context);
-                }
-              } 
-              else {
-                return HomePageUI();
+          body: () {
+            if (state.selectedItem.startsWith('Session')) {
+              final pageBuilder = DrawerState.items[state.selectedItem];
+              if (pageBuilder != null) {
+                return pageBuilder(context);
+              } else {
+                return Center(child: Text("Page not found"));
               }
-              return Container();
-            },
-          ),
+            } else {
+              return HomePageUI();
+            }
+          }(),
         );
       },
     );

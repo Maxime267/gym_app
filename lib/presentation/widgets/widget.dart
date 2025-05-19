@@ -19,7 +19,7 @@ class DrawerWidget extends StatelessWidget {
               // Dispatch AddDrawerItemEvent to add a new item to the drawer
               context.read<DrawerBloc>().add(
                 AddDrawerItemEvent(
-                  itemName: 'Session ${DrawerState.items.length + 1}', // Name of the item
+                  itemName: nameSeesion(), // Name of the item
                   itemPage:
                       (context) =>
                           TestPageUI(), // Widget to display for the item
@@ -55,13 +55,16 @@ class DrawerWidget extends StatelessWidget {
                         DrawerEventSelectedPage(pagename: key),
                       );
                       Navigator.pop(context); // Close the drawer
+                      /*
+                      /// not useful i keep it just in case
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage()),
                       );
+                      */
                     },
                   ),
-                  ElevatedButton.icon(
+                  if(key != 'Home') ElevatedButton.icon(
                     onPressed: () {
                       print("Trashed" + key);
                       context.read<DrawerBloc>().add(
@@ -71,6 +74,7 @@ class DrawerWidget extends StatelessWidget {
                     icon: Icon(Icons.delete),
                     label: Text("Delete"),
                   ),
+                  
                 ],
               );
             },
@@ -88,4 +92,13 @@ class TestPageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(color: Colors.red);
   }
+}
+
+
+String nameSeesion(){
+ int index = 1;
+  while (DrawerState.items.containsKey('Session $index')) {
+    index++;
+  }
+  return 'Session $index';
 }
