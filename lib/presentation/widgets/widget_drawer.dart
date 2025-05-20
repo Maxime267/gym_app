@@ -10,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myMapload = DrawerState.items;
-    final myMap = myMapload.entries.where((e) => e.key != 0).toList();
+    final myMap = myMapload.entries.where((e) => e.key != 0).toList(); //we take out setting not to put it in the list
     
     return Drawer(
       child: 
@@ -91,7 +91,7 @@ class DrawerWidget extends StatelessWidget {
                           }
                         ),
             
-                        if(key != 1) Row(
+                        if(key != 1) Row( //if not home
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                           IconButton(
