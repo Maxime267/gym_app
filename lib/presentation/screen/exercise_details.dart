@@ -17,15 +17,16 @@ class ExerciseDetails extends StatefulWidget {
 }
 
 class _ExerciseDetailsState extends State<ExerciseDetails> {
-  late Future<List<Exercise>> _exercisesFuture;
+  List<Exercise>? _exercises;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _exercisesFuture = _loadExercises();
+    _loadExercises();
   }
 
-  Future<List<Exercise>> _loadExercises() async {
+  Future<void> _loadExercises() async {
     final jsonData = await loadExerciseData();
     List<Exercise> exercises = [];
 
@@ -44,53 +45,59 @@ class _ExerciseDetailsState extends State<ExerciseDetails> {
         exercises = List<Exercise>.from(data.map((e) => Exercise.fromJson(e)));
       }
     }
-
-    return exercises;
+    setState(() {
+      _exercises = exercises;
+      _isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final title = widget.exerciseName ?? widget.category ?? 'Exercises';
+    if (_isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: Text(title)),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+    if (_exercises == null || _exercises!.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: Text(title)),
+        body: const Center(child: Text('No exercise found')),
+      );
+    }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.exerciseName ?? widget.category ?? 'Exercises'),
-      ),
-      body: FutureBuilder<List<Exercise>>(
-        future: _exercisesFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Erreur: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('Aucun exercice trouvé.'));
-          }
-
-          final exercises = snapshot.data!;
-
-          return ListView.builder(
-            itemCount: exercises.length,
-            itemBuilder: (context, index) {
-              final ex = exercises[index];
-              return Card(
-                margin: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.network(ex.image, height: 200, fit: BoxFit.cover),
-                      const SizedBox(height: 10),
-                      Text(ex.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text('Target: ${ex.muscleGroup}', style: const TextStyle(fontStyle: FontStyle.italic)),
-                      const SizedBox(height: 10),
-                      Text(ex.instruction),
-                    ],
-                  ),
+      appBar: AppBar(title: Text(title)),
+      body: ListView.builder(
+        itemCount: _exercises!.length,
+        itemBuilder: (context, index) {
+          final ex = _exercises![index];
+          return Container(
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(ex.image, height: 200, fit: BoxFit.cover),
+                const SizedBox(height: 10),
+                Text(
+                  ex.name,
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-              );
-            },
+                Text(
+                  'Target: ${ex.muscleGroup}',
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                ),
+                const SizedBox(height: 10),
+                Text(ex.instruction),
+              ],
+            ),
           );
-        },
+        }
       ),
     );
   }

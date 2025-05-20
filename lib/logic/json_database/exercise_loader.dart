@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-
 class Exercise {
   final String name;
   final String muscleGroup;

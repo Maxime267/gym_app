@@ -38,6 +38,7 @@ dependencies:
   bloc: ^9.0.0
   flutter_bloc: ^9.1.0
   meta: ^1.16.0
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ flutter:
   assets:
     - assets/images/
     - assets/exercise.json
+    - assets/session.json
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

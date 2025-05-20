@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gym_app/presentation/screen/home_page.dart';
+import 'package:gym_app/presentation/screen/session.dart';
 import '../../logic/bloc/drawer.dart';
+import '../../logic/session_logic/session_storage.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -21,14 +22,17 @@ class DrawerWidget extends StatelessWidget {
             children: [
               ElevatedButton(
                     onPressed: () {
+                      final int newId = DrawerState.getNextId();
+                      final String sessionName = nameSession();
                       context.read<DrawerBloc>().add(
                         AddDrawerItemEvent(
-                          itemName: nameSession(),
+                          itemName: sessionName,
                           itemPage:
                               (context) =>
-                                  TestPageUI(),
+                                  SessionDetails(session_id: newId, session_name: sessionName),
                         ),
                       );
+                      SessionStorage.saveSession('session$newId', []);
                     },
                     child: Text("Add Session"),
                   ),

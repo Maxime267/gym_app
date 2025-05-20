@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym_app/presentation/screen/exercise_details.dart';
+import 'package:gym_app/presentation/screen/session.dart';
 import '../../logic/bloc/drawer.dart';
 import '../widgets/widget_drawer.dart';
 
@@ -135,9 +136,10 @@ class HomePageUI extends StatelessWidget {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>
-                          ExerciseDetails(category: Tile.name))
+                        context,
+                        MaterialPageRoute(builder: (context) =>
+                              SessionDetails(session_id: 2, session_name: 'aaaa'))
+                              //ExerciseDetails(category: Tile.name,))
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -157,7 +159,7 @@ class HomePageUI extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           Tile.name,
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: Colors.black),
                           textAlign: TextAlign.center,
                         ),
                       ],

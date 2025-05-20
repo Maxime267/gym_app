@@ -1,0 +1,110 @@
+{
+  "session": {
+    "1" : [
+      {
+        "name": "Bench Press",
+        "set": 4,
+        "repetition": 10,
+        "weight": 60,
+        "rest_time": "90s"
+      },
+      {
+        "name": "Incline Dumbbell Press",
+        "set": 3,
+        "repetition": 12,
+        "weight": 20,
+        "rest_time": "60s"
+      }
+    ],
+    "2": [
+      {
+        "name": "Plank",
+        "set": 5,
+        "repetition": 8,
+        "weight": 80,
+        "rest_time": "120s"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "set": 3,
+        "repetition": 10,
+        "weight": 20,
+        "rest_time": "90s"
+      },
+      {
+        "name": "Plank",
+        "set": 5,
+        "repetition": 8,
+        "weight": 80,
+        "rest_time": "120s"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "set": 3,
+        "repetition": 10,
+        "weight": 20,
+        "rest_time": "90s"
+      },
+      {
+        "name": "Plank",
+        "set": 5,
+        "repetition": 8,
+        "weight": 80,
+        "rest_time": "120s"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "set": 3,
+        "repetition": 10,
+        "weight": 20,
+        "rest_time": "90s"
+      },
+      {
+        "name": "Plank",
+        "set": 5,
+        "repetition": 8,
+        "weight": 80,
+        "rest_time": "120s"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "set": 3,
+        "repetition": 10,
+        "weight": 20,
+        "rest_time": "90s"
+      },
+      {
+        "name": "Plank",
+        "set": 5,
+        "repetition": 8,
+        "weight": 80,
+        "rest_time": "120s"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "set": 3,
+        "repetition": 10,
+        "weight": 20,
+        "rest_time": "90s"
+      }
+    ],
+    "3": [
+      {
+        "name": "Deadlift",
+        "set": 4,
+        "repetition": 6,
+        "weight": 100,
+        "rest_time": "150s"
+      },
+      {
+        "name": "Barbell Row",
+        "set": 3,
+        "repetition": 10,
+        "weight": 50,
+        "rest_time": "90s"
+      }
+    ],
+    "0": [
+    ]
+  }
+}

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/presentation/screen/exercise_details.dart';
-import 'package:gym_app/presentation/screen/edit_screen.dart';
+import 'package:gym_app/presentation/screen/add_ex_to_session.dart';
 import '../../logic/session_logic/workout_program_class.dart';
 import '../../logic/session_logic/session_storage.dart';
 import '../../logic/bloc/drawer.dart';
 
 
 
-class SessionDetails extends StatefulWidget {
+class SessionEditing extends StatefulWidget {
 
   final int session_id;
   final String session_name;
-  const SessionDetails({super.key,required this.session_id ,required this.session_name});
+  const SessionEditing({super.key,required this.session_id ,required this.session_name});
 
   @override
-  State<SessionDetails> createState() => _SessionDetailsState();
+  State<SessionEditing> createState() => _SessionEditingState();
 }
 
-class _SessionDetailsState extends State<SessionDetails> {
+class _SessionEditingState extends State<SessionEditing> {
   List<workout_program>? _workout_program;
   bool _isLoading = true;
 
@@ -51,20 +51,15 @@ class _SessionDetailsState extends State<SessionDetails> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
         actions: [
           IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () async{
-              final result = await Navigator.push(
+            icon: Icon(Icons.add, size: 20,),
+            onPressed: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) =>
-                    SessionEditing(session_id: widget.session_id,
-                                   session_name: widget.session_name, )),
+                    AddExerciseToSession(session_id: widget.session_id)),
               );
-              if (result == true) {
-                _loadSession();
-              }
             },
           ),
         ],
@@ -100,31 +95,34 @@ class _SessionDetailsState extends State<SessionDetails> {
               ),
             )
           else
-          Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(height: 10),
-              itemCount: _workout_program!.length,
-              itemBuilder: (context, index) {
-                final prog = _workout_program![index];
-                return ListTile(
-                  tileColor: Colors.blueGrey[300],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  title: Text(prog.name),
-                  subtitle: Text('${prog.set} series of ${prog.repetition} reps'),
-                  trailing: Text('${prog.weight}kg\n${prog.rest_time}'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                        ExerciseDetails(exerciseName: prog.name.toLowerCase()))
-                    );
-                  }
-                );
-              },
+            Expanded(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(height: 10),
+                itemCount: _workout_program!.length,
+                itemBuilder: (context, index) {
+                  final prog = _workout_program![index];
+                  return ListTile(
+                      tileColor: Colors.blueGrey[300],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      title: Text(prog.name),
+                      subtitle: Text('${prog.set} series of ${prog.repetition} reps'),
+                      trailing: Text('${prog.weight}kg\n${prog.rest_time}'),
+                      onTap: () async {
+                        final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>
+                                ExerciseDetails(exerciseName: prog.name.toLowerCase()))
+                        );
+                        if (result == true) {
+                          _loadSession();
+                        }
+                      }
+                  );
+                },
+              ),
             ),
-          ),
         ],
       ),
     );
