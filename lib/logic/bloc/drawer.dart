@@ -57,10 +57,15 @@ class DrawerState {
       name: 'Home',
       builder: (context) => HomePageUI(),
     ),
+    0: DrawerItemData(
+      name: 'Settings',
+      builder: (context) =>Settings(),
+    ),
   };
   DrawerState(this.action, this.selectedItemId);
 
   static int _nextId = 2;
+  static int getNextId() => _nextId;
   // Method to add a new item to the items map
   static void addItem(String name, WidgetBuilder page) {
     items[_nextId] = DrawerItemData(

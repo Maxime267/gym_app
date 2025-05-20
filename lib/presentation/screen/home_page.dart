@@ -136,10 +136,9 @@ class HomePageUI extends StatelessWidget {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                              SessionDetails(session_id: 2, session_name: 'aaaa'))
-                              //ExerciseDetails(category: Tile.name,))
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                          ExerciseDetails(category: Tile.name))
                       );
                     },
                     style: ElevatedButton.styleFrom(
