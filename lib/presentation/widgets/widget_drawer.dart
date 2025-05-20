@@ -9,8 +9,9 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myMap = DrawerState.items;
-
+    final myMapload = DrawerState.items;
+    final myMap = myMapload.entries.where((e) => e.key != 0).toList();
+    
     return Drawer(
       child: 
       Column(
@@ -38,7 +39,10 @@ class DrawerWidget extends StatelessWidget {
                   ),
               IconButton(
                 onPressed: () {
-                  //TODO setting send page
+                  context.read<DrawerBloc>().add(
+                                DrawerEventSelectedPage(pageid: 0),
+                              );
+                              Navigator.pop(context); //Close drawer
                 },
                 icon: Icon(Icons.settings),
                 tooltip: 'Settings',
@@ -57,10 +61,9 @@ class DrawerWidget extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   itemCount: myMap.length,
                   itemBuilder: (context, index) {
-                    final entry = myMap.entries.elementAt(index);
+                    final entry = myMap[index];
                     final key = entry.key;
                     //final value = entry.value;
-            
                     return Column(
                       children: [
                         BlocBuilder<DrawerBloc, DrawerState>(

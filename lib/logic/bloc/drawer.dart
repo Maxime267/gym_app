@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/presentation/screen/home_page.dart';
+import 'package:gym_app/presentation/screen/settings.dart';
+
 import '../../logic/session_logic/session_storage.dart';
 //event
 
@@ -59,8 +61,6 @@ class DrawerState {
   DrawerState(this.action, this.selectedItemId);
 
   static int _nextId = 2;
-  static int getNextId() => _nextId;
-
   // Method to add a new item to the items map
   static void addItem(String name, WidgetBuilder page) {
     items[_nextId] = DrawerItemData(
@@ -79,6 +79,7 @@ class DrawerState {
       items[id]!.name = newName;
     }
   }
+
 }
 
 //Bloc
