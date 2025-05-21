@@ -1,51 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app/logic/bloc/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gym_app/logic/notifier/themeNotifier.dart';
+import 'package:provider/provider.dart';
+
+class SettingMap {
+  final String settingName;
+  final String parameterName;
+  final TextEditingController controller;
+
+  SettingMap({
+    required this.settingName,
+    required this.parameterName,
+    required this.controller,
+  });
+}
 
 
 class Settings extends StatefulWidget {
   Settings({super.key});
   final TextEditingController textController = TextEditingController();
-
+  
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
-  final TextEditingController textController = TextEditingController();
 
-  final List<Map<String, String>> settings = [
-  {
-    'settingName': 'Default Number of set',
-    'parameterName': '',
-  },
-  {
-    'settingName': 'Default Number of repetition',
-    'parameterName': '',
-  },
-  {
-    'settingName': 'Default Rest time (seconds)',
-    'parameterName': '',
-  },
+  final List<SettingMap> settings = [
+    SettingMap(
+      settingName: 'Default Number of set',
+      parameterName: 'nb_set',
+      controller: TextEditingController(),
+    ),
+    SettingMap(
+      settingName: 'Default Number of repetition',
+      parameterName: 'nb_rep',
+      controller: TextEditingController(),
+    ),
+    SettingMap(
+      settingName: 'Default Rest time (seconds)',
+      parameterName: 'rest_time',
+      controller: TextEditingController(),
+    ),
   ];
 
+
+
+
   @override
+  
   void initState() {
     super.initState();
-    _loadData();
-  } 
 
-  void _loadData() async {
+    for(int i =0 ; i<3; i++){
+      _loadData(settings[i].parameterName,settings[i].controller);
+    }
+  } 
+  
+
+  void _loadData(String parameterName, TextEditingController textController) async {
     final prefs = await SharedPreferences.getInstance();
-    final text = prefs.getString('user_input') ?? "";
+    final text = prefs.getString(parameterName) ?? "";
     print("Text in Prefs: $text");
     textController.text = text;
   }
-  void _onSubmit() async {
-    print("Text: ${textController.text}");
+  void _onSubmit(String parameterName, String text) async {
+    print("Text: $text");
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user_input', textController.text);
+    await prefs.setString(parameterName, text);
   }
-
+  /*
   void _onClear() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('user_input');
@@ -57,9 +82,11 @@ class _SettingsState extends State<Settings> {
     textController.dispose();
     super.dispose();
   }
+  */
   
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     return Scaffold(
       body: Column(
         children: [
@@ -76,14 +103,16 @@ class _SettingsState extends State<Settings> {
               IconButton(
                 icon: Icon(Icons.light_mode),
                 onPressed: () {
-                  
+                  _onSubmit("visual_mode", "light");
+                  themeNotifier.setTheme("light");
                 },
                 tooltip: "Light mode",
               ),
               IconButton(
                 icon: Icon(Icons.dark_mode),
                 onPressed: () {
-                  
+                  _onSubmit("visual_mode", "dark");
+                  themeNotifier.setTheme("dark");
                 },
                 tooltip: "Dark mode",
               ),
@@ -96,16 +125,6 @@ class _SettingsState extends State<Settings> {
             fontSize: 18
           ),),
           SizedBox(height: 30,),
-
-          /*
-          TextField(
-            controller: textController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-                  hintText: 'Default number of set',
-                )
-          ),
-          */
           
           Expanded(
             child: ListView.builder(
@@ -115,8 +134,9 @@ class _SettingsState extends State<Settings> {
               itemCount: settings.length,
               itemBuilder: (context, index) {
                 final setting = settings[index];
-                final settingName = setting['settingName']!;
-                final parameterName = setting['parameterName']!;
+                final settingName = setting.settingName;
+                final parameterName = setting.parameterName;
+                final TextEditingController controler = setting.controller;
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -130,6 +150,10 @@ class _SettingsState extends State<Settings> {
                       Expanded(
                         flex: 3,
                         child: TextField(
+                          controller: controler,
+                          onSubmitted: (newpara){
+                            _onSubmit(parameterName,controler.text);
+                          },
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             isDense: true,
