@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../logic/session_logic/session_storage.dart';
 import '../../logic/session_logic/workout_program_class.dart';
+import '../../logic/json_database/exercise_loader.dart';
 
 class AddExerciseToSession extends StatefulWidget {
   final int session_id;
@@ -14,16 +15,33 @@ class AddExerciseToSession extends StatefulWidget {
 class _AddExerciseToSessionState extends State<AddExerciseToSession> {
   final _formKey = GlobalKey<FormState>();
 
-  final nameCtrl = TextEditingController();
   final setCtrl = TextEditingController();
   final repCtrl = TextEditingController();
   final weightCtrl = TextEditingController();
   final restCtrl = TextEditingController();
 
+  final TextEditingController _autocompleteController = TextEditingController();
+
+  Exercise? selectedExercise;
+  List<Exercise> _exerciseList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadExercises();
+  }
+
+  Future<void> _loadExercises() async {
+    final exercises = await loadExerciseList();
+    setState(() {
+      _exerciseList = exercises;
+    });
+  }
+
   Future<void> _submitExercise() async {
     if (_formKey.currentState?.validate() ?? false) {
       final newExercise = workout_program(
-        name: nameCtrl.text.trim(),
+        name: selectedExercise!.name,
         set: int.parse(setCtrl.text),
         repetition: int.parse(repCtrl.text),
         weight: int.parse(weightCtrl.text),
@@ -41,11 +59,11 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
 
   @override
   void dispose() {
-    nameCtrl.dispose();
     setCtrl.dispose();
     repCtrl.dispose();
     weightCtrl.dispose();
     restCtrl.dispose();
+    _autocompleteController.dispose();
     super.dispose();
   }
 
@@ -59,10 +77,28 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
           key: _formKey,
           child: ListView(
             children: [
-              TextFormField(
-                controller: nameCtrl,
-                decoration: const InputDecoration(labelText: 'Exercise name'),
-                validator: (val) => val == null || val.isEmpty ? 'Required' : null,
+              Autocomplete<Exercise>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text.isEmpty) return const Iterable<Exercise>.empty();
+                    return _exerciseList.where((ex) =>
+                    ex.name.toLowerCase().contains(textEditingValue.text.toLowerCase()));
+                },
+                displayStringForOption: (Exercise ex) => ex.name,
+                onSelected: (Exercise ex) {
+                  setState(() {
+                    selectedExercise = ex;
+                    _autocompleteController.text = ex.name;
+                  });
+                },
+                fieldViewBuilder: (context, controller, focusNode, onFieldSubmitted) {
+                  _autocompleteController.value = controller.value;
+                  return TextFormField(
+                    controller: controller,
+                    focusNode: focusNode,
+                    decoration: const InputDecoration(labelText: 'Exercise name'),
+                    validator: (_) => selectedExercise == null ? 'Choose an exercise' : null,
+                  );
+                },
               ),
               TextFormField(
                 controller: setCtrl,

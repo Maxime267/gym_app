@@ -62,7 +62,7 @@ class _SessionEditingState extends State<SessionEditing> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.add, size: 20,),
+            icon: Icon(Icons.add, size: 30,),
             onPressed: () async {
               final result = await Navigator.push(
                 context,
@@ -114,21 +114,53 @@ class _SessionEditingState extends State<SessionEditing> {
                 itemCount: _workout_program.length,
                 itemBuilder: (context, index) {
                   final prog = _workout_program[index];
-                  return ListTile(
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey[300],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ListTile(
                       tileColor: Colors.blueGrey[300],
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       title: Text(prog.name),
                       subtitle: Text('${prog.set} series of ${prog.repetition} reps'),
-                      trailing: Text('${prog.weight}kg\n${prog.rest_time}'),
-                      onTap: ()  {
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text('${prog.weight}kg'),
+                              Text('${prog.rest_time}'),
+                            ],
+                          ),
+                          const SizedBox(width: 12),
+                          IconButton.outlined(
+                            icon: const Icon(Icons.delete, size: 20),
+                            onPressed: () async {
+                              setState(() {
+                                _workout_program.removeAt(index);
+                              });
+
+                              final sessionKey = 'session${widget.session_id}';
+                              await SessionStorage.saveSession(sessionKey, _workout_program);
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) =>
-                                ExerciseDetails(exerciseName: prog.name.toLowerCase()))
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ExerciseDetails(exerciseName: prog.name.toLowerCase()),
+                          ),
                         );
-                      }
+                      },
+                    ),
                   );
                 },
               ),
