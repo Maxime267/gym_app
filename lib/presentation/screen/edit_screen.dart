@@ -50,7 +50,7 @@ class _SessionEditingState extends State<SessionEditing> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text(currentSessionName)),
+        appBar: AppBar(title: Text('')),
         body: Center(child: CircularProgressIndicator()),
       );
     }

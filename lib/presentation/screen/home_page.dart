@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym_app/presentation/screen/exercise_details.dart';
-import 'package:gym_app/presentation/screen/session.dart';
 import '../../logic/bloc/drawer.dart';
 import '../widgets/widget_drawer.dart';
 

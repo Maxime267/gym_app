@@ -56,47 +56,57 @@ class _SessionDetailsState extends State<SessionDetails> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text(currentSessionName)),
+        appBar: AppBar(title: Text('')),
         body: Center(child: CircularProgressIndicator()),
       );
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () async{
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () async {
               final result = await Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>
-                    SessionEditing(session_id: widget.session_id,
-                                   session_name: widget.session_name, )),
+                MaterialPageRoute(
+                  builder: (context) => SessionEditing(
+                    session_id: widget.session_id,
+                    session_name: widget.session_name,
+                  ),
+                ),
               );
               if (result == true) {
                 _loadSession();
               }
             },
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
               ),
-            ),
-            child: Text(
-              currentSessionName,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(Icons.edit, color: Colors.black),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'Edit Session',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                  const Icon(Icons.edit, color: Colors.black),
+                ],
               ),
             ),
           ),
