@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/presentation/screen/home_page.dart';
 import 'package:gym_app/presentation/screen/settings.dart';
-
-import '../../logic/session_logic/session_storage.dart';
 //event
 
 abstract class DrawerEvent {}

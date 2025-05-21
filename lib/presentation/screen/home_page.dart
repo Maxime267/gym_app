@@ -99,7 +99,6 @@ class HomePageUI extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -116,7 +115,6 @@ class HomePageUI extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -157,7 +155,7 @@ class HomePageUI extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           Tile.name,
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          style: TextStyle(fontSize: 16),
                           textAlign: TextAlign.center,
                         ),
                       ],

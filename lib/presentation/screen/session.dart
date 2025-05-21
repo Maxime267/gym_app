@@ -91,7 +91,7 @@ class _SessionDetailsState extends State<SessionDetails> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.edit, color: Colors.black),
+                  const Icon(Icons.edit),
                   Expanded(
                     child: Center(
                       child: Text(
@@ -99,13 +99,12 @@ class _SessionDetailsState extends State<SessionDetails> {
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
-                  const Icon(Icons.edit, color: Colors.black),
+                  const Icon(Icons.edit),
                 ],
               ),
             ),
