@@ -24,6 +24,21 @@ class Exercise {
   }
 }
 
+Future<List<Exercise>> loadExerciseList() async {
+  final data = await loadExerciseData();
+  final Map<String, dynamic> rawGroups = data['exercise'];
+
+  final List<Exercise> allExercises = [];
+
+  rawGroups.forEach((muscleGroup, list) {
+    for (var item in list) {
+      allExercises.add(Exercise.fromJson(item));
+    }
+  });
+
+  return allExercises;
+}
+
 Future<Map<String, dynamic>> loadExerciseData() async {
   final String jsonString = await rootBundle.loadString('assets/exercise.json');
   return json.decode(jsonString);
