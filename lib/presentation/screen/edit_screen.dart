@@ -18,7 +18,7 @@ class SessionEditing extends StatefulWidget {
 }
 
 class _SessionEditingState extends State<SessionEditing> {
-  List<workout_program>? _workout_program;
+  List<workout_program> _workout_program = [];
   bool _isLoading = true;
 
   String get currentSessionName {
@@ -35,11 +35,16 @@ class _SessionEditingState extends State<SessionEditing> {
     final sessionKey = 'session${widget.session_id}';
     final programs = await SessionStorage.loadSession(sessionKey);
     setState(() {
-      _workout_program = programs;
+      _workout_program = List.from(programs); ;
       _isLoading = false;
     });
   }
 
+  Future<void> _saveAndExit() async {
+    final sessionKey = 'session${widget.session_id}';
+    await SessionStorage.saveSession(sessionKey, _workout_program);
+    Navigator.pop(context, true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +56,23 @@ class _SessionEditingState extends State<SessionEditing> {
     }
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: _saveAndExit,
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add, size: 20,),
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) =>
-                    AddExerciseToSession(session_id: widget.session_id)),
+                    AddExerciseToSession(session_id: widget.session_id)
+                ),
               );
+              if (result == true) {
+                _loadSession();
+              }
             },
           ),
         ],
@@ -109,15 +122,12 @@ class _SessionEditingState extends State<SessionEditing> {
                       title: Text(prog.name),
                       subtitle: Text('${prog.set} series of ${prog.repetition} reps'),
                       trailing: Text('${prog.weight}kg\n${prog.rest_time}'),
-                      onTap: () async {
-                        final result = await Navigator.push(
+                      onTap: ()  {
+                        Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) =>
                                 ExerciseDetails(exerciseName: prog.name.toLowerCase()))
                         );
-                        if (result == true) {
-                          _loadSession();
-                        }
                       }
                   );
                 },

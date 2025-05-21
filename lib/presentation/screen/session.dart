@@ -26,6 +26,17 @@ class _SessionDetailsState extends State<SessionDetails> {
   }
 
   @override
+  void didUpdateWidget(covariant SessionDetails oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.session_id != widget.session_id) {
+      _isLoading = true;
+      _workout_program = null;
+      _loadSession();
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
     _loadSession();
