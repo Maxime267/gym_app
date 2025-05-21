@@ -98,7 +98,7 @@ class _SessionEditingState extends State<SessionEditing> {
             ),
           ),
           SizedBox(height: 10),
-          if (_workout_program == null || _workout_program!.isEmpty)
+          if (_workout_program.isEmpty)
             Expanded(
               child: Center(
                 child: Text(
@@ -111,9 +111,9 @@ class _SessionEditingState extends State<SessionEditing> {
             Expanded(
               child: ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(height: 10),
-                itemCount: _workout_program!.length,
+                itemCount: _workout_program.length,
                 itemBuilder: (context, index) {
-                  final prog = _workout_program![index];
+                  final prog = _workout_program[index];
                   return ListTile(
                       tileColor: Colors.blueGrey[300],
                       shape: RoundedRectangleBorder(
