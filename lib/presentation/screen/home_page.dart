@@ -151,11 +151,14 @@ class HomePageUI extends StatelessWidget {
                         Image.network(
                           Tile.imageLink,
                           fit: BoxFit.contain,
+                          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                            return const SizedBox.shrink();
+                          },
                         ),
                         SizedBox(height: 8),
                         Text(
                           Tile.name,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ],

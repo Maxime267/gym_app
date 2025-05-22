@@ -82,7 +82,14 @@ class _ExerciseDetailsState extends State<ExerciseDetails> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(ex.image, height: 200, fit: BoxFit.cover),
+                Image.network(
+                  ex.image,
+                  height: 200,
+                  fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                  return const SizedBox.shrink();
+                  }
+                ),
                 const SizedBox(height: 10),
                 Text(
                   ex.name,
