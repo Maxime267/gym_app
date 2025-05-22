@@ -18,8 +18,8 @@ class ThemeNotifier with ChangeNotifier {
     }
     else{
       _themeMode = ThemeMode.light;
-      notifyListeners();
     }
+    notifyListeners();
   }
 
   void setTheme(String mode) async {

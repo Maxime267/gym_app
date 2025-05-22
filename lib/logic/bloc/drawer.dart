@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app/presentation/screen/home_page.dart';
 import 'package:gym_app/presentation/screen/settings.dart';
+import 'package:gym_app/logic/session_logic/session_storage.dart';
+import 'package:gym_app/presentation/screen/session.dart';
 //event
 
 abstract class DrawerEvent {}
@@ -12,6 +14,8 @@ class AddDrawerItemEvent extends DrawerEvent {
 
   AddDrawerItemEvent({required this.itemName, required this.itemPage});
 }
+
+class LoadSavedSessionsEvent extends DrawerEvent {}
 
 class DrawerEventSelectedPage extends DrawerEvent {
   final int pageid;
@@ -96,9 +100,11 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
         DrawerState("Add", 0), // 0 is random value just not to cause error
       );
     });
-    on<DrawerEventDelete>((event, emit) {
+    on<DrawerEventDelete>((event, emit)async {
       DrawerState.deleteItem(event.pageid);
       emit(DrawerState("Delete", event.pageid));
+      final sessionId = 'session${event.pageid}';
+      await SessionStorage.deleteSession(sessionId);
     });
 
     on<DrawerEventSelectedPage>((event, emit) {
@@ -110,9 +116,38 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
       emit(DrawerState("RenameButton", event.pageid));
     });
 
-    on<DrawerEventRenameText>((event, emit) {
+    on<DrawerEventRenameText>((event, emit)async {
       DrawerState.renameItem(event.pageid,event.newName);
       emit(DrawerState("RenameText", event.pageid));
+      final sessionId = 'session${event.pageid}';
+      await SessionStorage.saveSessionName(sessionId, event.newName);
     });
+
+    on<LoadSavedSessionsEvent>((event, emit) async {
+
+      final index = await SessionStorage.loadSessionIndex();
+
+      for (final entry in index.entries) {
+        final sessionId = entry.key;
+        final name = entry.value;
+        final id = int.tryParse(sessionId.replaceAll('session', ''));
+        if (id == null) continue;
+
+        DrawerState.items[id] = DrawerItemData(
+          name: name,
+          builder: (context) => SessionDetails(
+            session_id: id,
+            session_name: name,
+          ),
+        );
+
+        if (id >= DrawerState._nextId) {
+          DrawerState._nextId = id + 1;
+        }
+      }
+
+      emit(DrawerState("Loaded", DrawerState.items.keys.first));
+    });
+
   }
 }

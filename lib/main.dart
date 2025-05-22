@@ -5,15 +5,24 @@ import 'logic/bloc/drawer.dart';
 import 'logic/notifier/themeNotifier.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeNotifier = ThemeNotifier();
+
+  final drawerBloc = DrawerBloc();
+  drawerBloc.add(LoadSavedSessionsEvent()); // ← on prépare le Drawer
+
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeNotifier(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => themeNotifier),
+        BlocProvider(create: (_) => drawerBloc),
+      ],
       child: const MyApp(),
     ),
   );
 }
-
 /*
 void main2() {
   runApp(
@@ -42,7 +51,7 @@ class MyApp extends StatelessWidget {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
 
     return
-    BlocProvider(
+      BlocProvider(
         create: (context) => DrawerBloc(),
         child: MaterialApp(
           title: 'Gym App',
@@ -50,7 +59,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData.dark(),
           themeMode: themeNotifier.themeMode,
           home: HomePage(),
-      ),
-    );
+        ),
+      );
   }
 }
