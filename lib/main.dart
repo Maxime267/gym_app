@@ -51,15 +51,12 @@ class MyApp extends StatelessWidget {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
 
     return
-      BlocProvider(
-        create: (context) => DrawerBloc(),
-        child: MaterialApp(
-          title: 'Gym App',
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
-          themeMode: themeNotifier.themeMode,
-          home: HomePage(),
-        ),
+      MaterialApp(
+        title: 'Gym App',
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: themeNotifier.themeMode,
+        home: HomePage(),
       );
   }
 }
