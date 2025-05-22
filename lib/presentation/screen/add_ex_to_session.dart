@@ -26,6 +26,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
 
   Exercise? selectedExercise;
   List<Exercise> _exerciseList = [];
+  String selectedUnit = 'kg';
 
   @override
   void initState() {
@@ -34,6 +35,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
     _loadSettings('nb_set', setCtrl);
     _loadSettings('nb_rep', repCtrl);
     _loadSettings('rest_time', restCtrl);
+    _loadSelectedUnit();
   }
 
   Future<void> _loadExercises() async {
@@ -47,6 +49,18 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
     final text = prefs.getString(parameterName) ?? "";
     textController.text = text;
   }
+  Future<String> _loadData_return(String parameterName) async {
+    final prefs = await SharedPreferences.getInstance();
+    final text = prefs.getString(parameterName) ?? "";
+    return text;
+  }
+  Future<void> _loadSelectedUnit() async {
+    final loadedUnit = await _loadData_return('weight_unit');
+    setState(() {
+      // fallback to 'kg' if loadedUnit is null or invalid
+      selectedUnit = (loadedUnit == 'kg' || loadedUnit == 'lb') ? loadedUnit : 'kg';
+    });
+  }
 
   Future<void> _submitExercise() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -54,7 +68,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
         name: selectedExercise!.name,
         set: int.parse(setCtrl.text),
         repetition: int.parse(repCtrl.text),
-        weight: int.parse(weightCtrl.text),
+        weight: weightCtrl.text  + selectedUnit,
         rest_time: restCtrl.text.trim(),
       );
 
@@ -124,7 +138,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
               ),
               TextFormField(
                 controller: weightCtrl,
-                decoration: const InputDecoration(labelText: 'Weight (kg)'),
+                decoration: const InputDecoration(labelText: 'Weight'),
                 keyboardType: TextInputType.number,
                 validator: (val) => int.tryParse(val ?? '') == null ? 'Enter number' : null,
               ),

@@ -23,25 +23,6 @@ void main() async {
     ),
   );
 }
-/*
-void main2() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeNotifier(),
-      child :
-      BlocProvider(
-        create: (context) => DrawerBloc(),
-        child: MaterialApp(
-          title: 'Gym App',
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
-          home: HomePage(),
-      ),
-      )
-    )
-  );
-}
-*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

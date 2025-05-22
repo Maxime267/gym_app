@@ -2,7 +2,7 @@ class workout_program {
   final String name;
   final int set;
   final int repetition;
-  final int weight;
+  final String weight;
   final String rest_time;
 
   workout_program({

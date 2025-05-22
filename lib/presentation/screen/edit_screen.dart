@@ -133,7 +133,7 @@ class _SessionEditingState extends State<SessionEditing> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text('${prog.weight}kg'),
+                              Text('${prog.weight}'),
                               Text('${prog.rest_time}'),
                             ],
                           ),

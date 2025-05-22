@@ -133,7 +133,7 @@ class _SessionDetailsState extends State<SessionDetails> {
                   ),
                   title: Text(prog.name),
                   subtitle: Text('${prog.set} series of ${prog.repetition} reps'),
-                  trailing: Text('${prog.weight}kg\n${prog.rest_time}'),
+                  trailing: Text('${prog.weight}\n${prog.rest_time}'),
                   onTap: () {
                     Navigator.push(
                         context,
