@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../logic/session_logic/session_storage.dart';
 import '../../logic/session_logic/workout_program_class.dart';
 import '../../logic/json_database/exercise_loader.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../format/textformat.dart';
 
 class AddExerciseToSession extends StatefulWidget {
   final int session_id;
@@ -29,6 +31,9 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
   void initState() {
     super.initState();
     _loadExercises();
+    _loadSettings('nb_set', setCtrl);
+    _loadSettings('nb_rep', repCtrl);
+    _loadSettings('rest_time', restCtrl);
   }
 
   Future<void> _loadExercises() async {
@@ -36,6 +41,11 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
     setState(() {
       _exerciseList = exercises;
     });
+  }
+  void _loadSettings(String parameterName, TextEditingController textController) async {
+    final prefs = await SharedPreferences.getInstance();
+    final text = prefs.getString(parameterName) ?? "";
+    textController.text = text;
   }
 
   Future<void> _submitExercise() async {
@@ -120,7 +130,10 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
               ),
               TextFormField(
                 controller: restCtrl,
-                decoration: const InputDecoration(labelText: 'Rest time (e.g. 90s)'),
+                decoration: const InputDecoration(labelText: 'Rest time (mm:ss enter 4 digits)'),
+                keyboardType: TextInputType.number,
+                inputFormatters: [TimeTextInputFormatter()],
+                
                 validator: (val) => val == null || val.isEmpty ? 'Required' : null,
               ),
               const SizedBox(height: 20),
@@ -135,4 +148,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
     );
   }
 }
+
+
+
 

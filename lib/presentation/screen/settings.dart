@@ -3,6 +3,7 @@ import 'package:gym_app/logic/bloc/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gym_app/logic/notifier/themeNotifier.dart';
 import 'package:provider/provider.dart';
+import '../format/textformat.dart';
 
 class SettingMap {
   final String settingName;
@@ -39,7 +40,7 @@ class _SettingsState extends State<Settings> {
       controller: TextEditingController(),
     ),
     SettingMap(
-      settingName: 'Default Rest time (seconds)',
+      settingName: 'Default Rest time (mm:ss enter 4 digits)',
       parameterName: 'rest_time',
       controller: TextEditingController(),
     ),
@@ -70,19 +71,7 @@ class _SettingsState extends State<Settings> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(parameterName, text);
   }
-  /*
-  void _onClear() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('user_input');
-    textController.clear();
-  } 
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
-  */
+ 
   
   @override
   Widget build(BuildContext context) {
@@ -160,6 +149,7 @@ class _SettingsState extends State<Settings> {
                             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                             border: OutlineInputBorder(),
                           ),
+                          inputFormatters: parameterName == 'rest_time' ? [TimeTextInputFormatter()] : [] ,
                         ),
                       ),
                     ],
