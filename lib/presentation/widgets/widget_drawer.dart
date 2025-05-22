@@ -10,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myMapload = DrawerState.items;
-    final myMap = myMapload.entries.where((e) => e.key != 0).toList();
+    final myMap = myMapload.entries.where((e) => e.key != 0).toList();  //we take out setting not to put it in the list (we do not want it on the drawer list)
     
     return Drawer(
       child: 
