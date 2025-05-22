@@ -4,7 +4,6 @@ import 'package:gym_app/presentation/screen/home_page.dart';
 import 'package:gym_app/presentation/screen/settings.dart';
 import 'package:gym_app/logic/session_logic/session_storage.dart';
 import 'package:gym_app/presentation/screen/session.dart';
-//event
 
 abstract class DrawerEvent {}
 
@@ -39,8 +38,6 @@ class DrawerEventRenameText extends DrawerEvent {
 }
 
 
-//State
-
 class DrawerItemData {
   String name;
   final WidgetBuilder builder;
@@ -69,7 +66,6 @@ class DrawerState {
 
   static int _nextId = 2;
   static int getNextId() => _nextId;
-  // Method to add a new item to the items map
   static void addItem(String name, WidgetBuilder page) {
     items[_nextId] = DrawerItemData(
       name: name,
@@ -90,14 +86,12 @@ class DrawerState {
 
 }
 
-//Bloc
-
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
-  DrawerBloc() : super(DrawerState('Select', 1)) { // Default state is 'Home' (id : 1 = home)
+  DrawerBloc() : super(DrawerState('Select', 1)) {
     on<AddDrawerItemEvent>((event, emit) {
       DrawerState.addItem(event.itemName, event.itemPage);
       emit(
-        DrawerState("Add", 0), // 0 is random value just not to cause error
+        DrawerState("Add", 0),
       );
     });
     on<DrawerEventDelete>((event, emit)async {
@@ -111,7 +105,6 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
       emit(DrawerState("Select", event.pageid));
     });
 
-    //When rename button is pressed
     on<DrawerEventRenameButton>((event, emit) {
       emit(DrawerState("RenameButton", event.pageid));
     });

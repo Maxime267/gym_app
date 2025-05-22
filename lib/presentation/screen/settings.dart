@@ -49,9 +49,7 @@ class _SettingsState extends State<Settings> {
 
   String selectedUnit = 'kg';
 
-
   @override
-  
   void initState() {
     super.initState();
 
@@ -75,7 +73,6 @@ class _SettingsState extends State<Settings> {
   Future<void> _loadSelectedUnit() async {
     final loadedUnit = await _loadData_return('weight_unit');
     setState(() {
-      // fallback to 'kg' if loadedUnit is null or invalid
       selectedUnit = (loadedUnit == 'kg' || loadedUnit == 'lb') ? loadedUnit : 'kg';
     });
   }
@@ -151,7 +148,7 @@ class _SettingsState extends State<Settings> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.38)),
+                        border: Border.all(color: Theme.of(context).colorScheme.onSurface),
                         borderRadius: BorderRadius.circular(12),
                         color: Theme.of(context).colorScheme.surface,
                       ),

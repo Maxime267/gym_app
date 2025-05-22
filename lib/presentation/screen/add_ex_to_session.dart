@@ -153,9 +153,12 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
                     _autocompleteController.text = ex.name;
                   });
                 },
-                fieldViewBuilder: (context, _, focusNode, onFieldSubmitted) {
+                fieldViewBuilder: (context, controller, focusNode, onFieldSubmitted) {
+                  if (controller.text.isEmpty && widget.exercise != null) {
+                    controller.text = widget.exercise!.name;
+                  }
                   return TextFormField(
-                    controller: _autocompleteController,
+                    controller: controller,
                     focusNode: focusNode,
                     decoration: const InputDecoration(labelText: 'Exercise name'),
                     validator: (_) => selectedExercise == null ? 'Choose an exercise' : null,

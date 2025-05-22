@@ -5,8 +5,6 @@ import '../../logic/session_logic/workout_program_class.dart';
 import '../../logic/session_logic/session_storage.dart';
 import '../../logic/bloc/drawer.dart';
 
-
-
 class SessionDetails extends StatefulWidget {
 
   final int session_id;

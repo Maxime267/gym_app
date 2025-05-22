@@ -10,7 +10,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myMapload = DrawerState.items;
-    final myMap = myMapload.entries.where((e) => e.key != 0).toList(); //we take out setting not to put it in the list
+    final myMap = myMapload.entries.where((e) => e.key != 0).toList();
     
     return Drawer(
       child: 
@@ -65,7 +65,6 @@ class DrawerWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final entry = myMap[index];
                     final key = entry.key;
-                    //final value = entry.value;
                     return Column(
                       children: [
                         BlocBuilder<DrawerBloc, DrawerState>(
