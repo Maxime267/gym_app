@@ -181,7 +181,7 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
                 controller: weightCtrl,
                 decoration: const InputDecoration(labelText: 'Weight'),
                 keyboardType: TextInputType.number,
-                validator: (val) => int.tryParse(val ?? '') == null ? 'Enter number' : null,
+                validator: (val) => val == null || val.isEmpty ? 'Enter number' : null,
               ),
               TextFormField(
                 controller: restCtrl,
