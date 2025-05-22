@@ -7,8 +7,9 @@ import '../format/textformat.dart';
 
 class AddExerciseToSession extends StatefulWidget {
   final int session_id;
+  final workout_program ? exercise;
 
-  const AddExerciseToSession({super.key, required this.session_id});
+  const AddExerciseToSession({super.key, required this.session_id, this.exercise});
 
   @override
   State<AddExerciseToSession> createState() => _AddExerciseToSessionState();
@@ -32,17 +33,52 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
   void initState() {
     super.initState();
     _loadExercises();
-    _loadSettings('nb_set', setCtrl);
-    _loadSettings('nb_rep', repCtrl);
-    _loadSettings('rest_time', restCtrl);
     _loadSelectedUnit();
+    if (widget.exercise != null) {
+      _loadEditValue('set', setCtrl);
+      _loadEditValue('repetition', repCtrl);
+      _loadEditValue('weight', weightCtrl);
+      _loadEditValue('rest_time', restCtrl);
+    } else {
+      _loadSettings('nb_set', setCtrl);
+      _loadSettings('nb_rep', repCtrl);
+      _loadSettings('rest_time', restCtrl);
+    }
   }
 
   Future<void> _loadExercises() async {
     final exercises = await loadExerciseList();
     setState(() {
       _exerciseList = exercises;
+      if (widget.exercise != null) {
+        selectedExercise = exercises.firstWhere(
+              (ex) => ex.name == widget.exercise!.name,
+        );
+        _autocompleteController.text = selectedExercise!.name;
+      }
     });
+  }
+  void _loadEditValue(String parameterName, TextEditingController textController) {
+    final exercise = widget.exercise;
+    switch (parameterName) {
+      case 'name':
+        textController.text = exercise!.name;
+        break;
+      case 'set':
+        textController.text = exercise!.set.toString();
+        break;
+      case 'repetition':
+        textController.text = exercise!.repetition.toString();
+        break;
+      case 'weight':
+        textController.text = exercise!.weight.replaceAll(RegExp(r'[a-zA-Z]'), '');
+        break;
+      case 'rest_time':
+        textController.text = exercise!.rest_time;
+        break;
+      default:
+        textController.text = "";
+    }
   }
   void _loadSettings(String parameterName, TextEditingController textController) async {
     final prefs = await SharedPreferences.getInstance();
@@ -57,7 +93,6 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
   Future<void> _loadSelectedUnit() async {
     final loadedUnit = await _loadData_return('weight_unit');
     setState(() {
-      // fallback to 'kg' if loadedUnit is null or invalid
       selectedUnit = (loadedUnit == 'kg' || loadedUnit == 'lb') ? loadedUnit : 'kg';
     });
   }
@@ -74,9 +109,13 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
 
       final key = 'session${widget.session_id}';
       final current = await SessionStorage.loadSession(key);
+
+      if (widget.exercise != null) {
+        current.removeWhere((ex) => ex.name == widget.exercise!.name);
+      }
+
       current.add(newExercise);
       await SessionStorage.saveSession(key, current);
-
       Navigator.pop(context, true);
     }
   }
@@ -114,10 +153,9 @@ class _AddExerciseToSessionState extends State<AddExerciseToSession> {
                     _autocompleteController.text = ex.name;
                   });
                 },
-                fieldViewBuilder: (context, controller, focusNode, onFieldSubmitted) {
-                  _autocompleteController.value = controller.value;
+                fieldViewBuilder: (context, _, focusNode, onFieldSubmitted) {
                   return TextFormField(
-                    controller: controller,
+                    controller: _autocompleteController,
                     focusNode: focusNode,
                     decoration: const InputDecoration(labelText: 'Exercise name'),
                     validator: (_) => selectedExercise == null ? 'Choose an exercise' : null,

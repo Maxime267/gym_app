@@ -11,7 +11,7 @@ void main() async {
   final themeNotifier = ThemeNotifier();
 
   final drawerBloc = DrawerBloc();
-  drawerBloc.add(LoadSavedSessionsEvent()); // ← on prépare le Drawer
+  drawerBloc.add(LoadSavedSessionsEvent());
 
   runApp(
     MultiProvider(

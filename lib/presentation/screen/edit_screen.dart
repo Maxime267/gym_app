@@ -139,6 +139,20 @@ class _SessionEditingState extends State<SessionEditing> {
                           ),
                           const SizedBox(width: 12),
                           IconButton.outlined(
+                            icon: const Icon(Icons.edit, size: 20),
+                            onPressed: () async {
+                              final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>
+                                    AddExerciseToSession(session_id: widget.session_id, exercise: prog,)
+                                ),
+                              );
+                              if (result == true) {
+                                _loadSession();
+                              }
+                            },
+                          ),
+                          IconButton.outlined(
                             icon: const Icon(Icons.delete, size: 20),
                             onPressed: () async {
                               setState(() {

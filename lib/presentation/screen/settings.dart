@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/logic/bloc/drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gym_app/logic/notifier/themeNotifier.dart';
 import 'package:provider/provider.dart';
