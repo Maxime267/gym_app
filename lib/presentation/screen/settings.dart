@@ -46,7 +46,7 @@ class _SettingsState extends State<Settings> {
     ),
   ];
 
-
+  String selectedUnit = 'kg';
 
 
   @override
@@ -57,15 +57,29 @@ class _SettingsState extends State<Settings> {
     for(int i =0 ; i<3; i++){
       _loadData(settings[i].parameterName,settings[i].controller);
     }
+    _loadSelectedUnit();
   } 
   
 
   void _loadData(String parameterName, TextEditingController textController) async {
     final prefs = await SharedPreferences.getInstance();
     final text = prefs.getString(parameterName) ?? "";
-    print("Text in Prefs: $text");
     textController.text = text;
   }
+  Future<String> _loadData_return(String parameterName) async {
+    final prefs = await SharedPreferences.getInstance();
+    final text = prefs.getString(parameterName) ?? "";
+    return text;
+  }
+  Future<void> _loadSelectedUnit() async {
+    final loadedUnit = await _loadData_return('weight_unit');
+    setState(() {
+      // fallback to 'kg' if loadedUnit is null or invalid
+      selectedUnit = (loadedUnit == 'kg' || loadedUnit == 'lb') ? loadedUnit : 'kg';
+    });
+  }
+
+
   void _onSubmit(String parameterName, String text) async {
     print("Text: $text");
     final prefs = await SharedPreferences.getInstance();
@@ -114,6 +128,47 @@ class _SettingsState extends State<Settings> {
             fontSize: 18
           ),),
           SizedBox(height: 30,),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child :
+            Row(
+              children: [
+                Text("Default Unit"),
+                SizedBox(width: 50,),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.38)),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: selectedUnit,
+                      onChanged: (String? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            selectedUnit = newValue;
+                          });
+                          _onSubmit('weight_unit',selectedUnit);
+                        }
+                      },
+                      items: ['kg', 'lb'].map((unit) {
+                        return DropdownMenuItem<String>(
+                          value: unit,
+                          child: Text(unit),
+                        );
+                      }).toList(),
+                      icon: Icon(Icons.arrow_drop_down, color: Theme.of(context).iconTheme.color),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      dropdownColor: Theme.of(context).colorScheme.surface,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           
           Expanded(
             child: ListView.builder(
@@ -157,7 +212,8 @@ class _SettingsState extends State<Settings> {
                 );
               },
             )
-          )
+          ),
+          
         ],
       ),
     );
