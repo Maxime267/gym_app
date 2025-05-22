@@ -102,173 +102,174 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     return Scaffold(
-      body: Column(
-        children: [
-          Text(
-            "General Settings",
-            style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18
-          )),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
             children: [
-              IconButton(
-                icon: Icon(Icons.light_mode),
-                onPressed: () {
-                  _onSubmit("visual_mode", "light");
-                  themeNotifier.setTheme("light");
-                },
-                tooltip: "Light mode",
-              ),
-              IconButton(
-                icon: Icon(Icons.dark_mode),
-                onPressed: () {
-                  _onSubmit("visual_mode", "dark");
-                  themeNotifier.setTheme("dark");
-                },
-                tooltip: "Dark mode",
-              ),
-            ],
-          ),
-
+              Text(
+                "General Settings",
+                style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18
+              )),
           
-          Text("Session Settings", style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18
-          ),),
-          SizedBox(height: 30,),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child :
-            Row(
-              children: [
-                Text("Default Unit"),
-                SizedBox(width: 50,),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.38)),
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).colorScheme.surface,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.light_mode),
+                    onPressed: () {
+                      _onSubmit("visual_mode", "light");
+                      themeNotifier.setTheme("light");
+                    },
+                    tooltip: "Light mode",
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: selectedUnit,
-                      onChanged: (String? newValue) {
-                        if (newValue != null) {
-                          setState(() {
-                            selectedUnit = newValue;
-                          });
-                          _onSubmit('weight_unit',selectedUnit);
-                        }
-                      },
-                      items: ['kg', 'lb'].map((unit) {
-                        return DropdownMenuItem<String>(
-                          value: unit,
-                          child: Text(unit),
-                        );
-                      }).toList(),
-                      icon: Icon(Icons.arrow_drop_down, color: Theme.of(context).iconTheme.color),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      dropdownColor: Theme.of(context).colorScheme.surface,
+                  IconButton(
+                    icon: Icon(Icons.dark_mode),
+                    onPressed: () {
+                      _onSubmit("visual_mode", "dark");
+                      themeNotifier.setTheme("dark");
+                    },
+                    tooltip: "Dark mode",
+                  ),
+                ],
+              ),
+          
+              
+              Text("Session Settings", style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18
+              ),),
+              SizedBox(height: 30,),
+          
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child :
+                Row(
+                  children: [
+                    Text("Default Unit"),
+                    SizedBox(width: 50,),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.38)),
+                        borderRadius: BorderRadius.circular(12),
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: selectedUnit,
+                          onChanged: (String? newValue) {
+                            if (newValue != null) {
+                              setState(() {
+                                selectedUnit = newValue;
+                              });
+                              _onSubmit('weight_unit',selectedUnit);
+                            }
+                          },
+                          items: ['kg', 'lb'].map((unit) {
+                            return DropdownMenuItem<String>(
+                              value: unit,
+                              child: Text(unit),
+                            );
+                          }).toList(),
+                          icon: Icon(Icons.arrow_drop_down, color: Theme.of(context).iconTheme.color),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              
+              Column(
+                children: [
+                  ListView.builder(
+                    //separatorBuilder: (context, index) => const Divider(color: Colors.black),
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: settings.length,
+                    itemBuilder: (context, index) {
+                      final setting = settings[index];
+                      final settingName = setting.settingName;
+                      final parameterName = setting.parameterName;
+                      final TextEditingController controler = setting.controller;
+                  
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Text(settingName),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              flex: 3,
+                              child: TextField(
+                                controller: controler,
+                                onSubmitted: (newpara){
+                                  _onSubmit(parameterName,controler.text);
+                                },
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                  border: OutlineInputBorder(),
+                                ),
+                                inputFormatters: parameterName == 'rest_time' ? [TimeTextInputFormatter()] : [] ,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    "Credits",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Developers",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    "Giraux Maxime\nZambon Yanis",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Sources used for exercises",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 14, color: Colors.blue),
+                      children: [
+                        TextSpan(
+                          text: "https://liftmanual.com/",
+                          style: TextStyle(decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url1),
+                        ),
+                        TextSpan(text: "\n\n"),
+                        TextSpan(
+                          text: "https://www.muscleandstrength.com/",
+                          style: TextStyle(decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url2),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              )
+            ],
           ),
-          
-          Expanded(
-            child: Column(
-              children: [
-                ListView.builder(
-                  //separatorBuilder: (context, index) => const Divider(color: Colors.black),
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: settings.length,
-                  itemBuilder: (context, index) {
-                    final setting = settings[index];
-                    final settingName = setting.settingName;
-                    final parameterName = setting.parameterName;
-                    final TextEditingController controler = setting.controller;
-                
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Text(settingName),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            flex: 3,
-                            child: TextField(
-                              controller: controler,
-                              onSubmitted: (newpara){
-                                _onSubmit(parameterName,controler.text);
-                              },
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                                border: OutlineInputBorder(),
-                              ),
-                              inputFormatters: parameterName == 'rest_time' ? [TimeTextInputFormatter()] : [] ,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: 30),
-                Text(
-                  "Credits",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  "Developers",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  "Giraux Maxime\nZambon Yanis",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  "Sources used for exercises",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: 10),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 14, color: Colors.blue),
-                    children: [
-                      TextSpan(
-                        text: "https://liftmanual.com/",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                        recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url1),
-                      ),
-                      TextSpan(text: "\n\n"),
-                      TextSpan(
-                        text: "https://www.muscleandstrength.com/",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                        recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url2),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          ),
-          
-        ],
+        ),
       ),
     );
   }
