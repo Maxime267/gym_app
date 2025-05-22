@@ -28,11 +28,13 @@ class DrawerWidget extends StatelessWidget {
                       context.read<DrawerBloc>().add(
                         AddDrawerItemEvent(
                           itemName: sessionName,
-                          itemPage:
-                              (context) =>
-                                  SessionDetails(session_id: newId, session_name: sessionName),
+                          itemPage: (context) => SessionDetails(
+                            session_id: newId,
+                            session_name: sessionName,
+                          ),
                         ),
                       );
+                      SessionStorage.saveSessionName('session$newId', sessionName);
                       SessionStorage.saveSession('session$newId', []);
                     },
                     child: Text("Add Session"),
