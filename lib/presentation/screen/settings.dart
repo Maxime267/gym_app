@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gym_app/logic/notifier/themeNotifier.dart';
 import 'package:provider/provider.dart';
 import '../format/textformat.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/gestures.dart';
 
 class SettingMap {
   final String settingName;
@@ -84,6 +86,15 @@ class _SettingsState extends State<Settings> {
     print("Text: $text");
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(parameterName, text);
+  }
+
+  final Uri url1 = Uri.parse("https://liftmanual.com/");
+  final Uri url2 = Uri.parse("https://www.muscleandstrength.com/");
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
   }
  
   
@@ -171,46 +182,89 @@ class _SettingsState extends State<Settings> {
           ),
           
           Expanded(
-            child: ListView.builder(
-              //separatorBuilder: (context, index) => const Divider(color: Colors.black),
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: settings.length,
-              itemBuilder: (context, index) {
-                final setting = settings[index];
-                final settingName = setting.settingName;
-                final parameterName = setting.parameterName;
-                final TextEditingController controler = setting.controller;
-
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text(settingName),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        flex: 3,
-                        child: TextField(
-                          controller: controler,
-                          onSubmitted: (newpara){
-                            _onSubmit(parameterName,controler.text);
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                            border: OutlineInputBorder(),
+            child: Column(
+              children: [
+                ListView.builder(
+                  //separatorBuilder: (context, index) => const Divider(color: Colors.black),
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: settings.length,
+                  itemBuilder: (context, index) {
+                    final setting = settings[index];
+                    final settingName = setting.settingName;
+                    final parameterName = setting.parameterName;
+                    final TextEditingController controler = setting.controller;
+                
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Text(settingName),
                           ),
-                          inputFormatters: parameterName == 'rest_time' ? [TimeTextInputFormatter()] : [] ,
-                        ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            flex: 3,
+                            child: TextField(
+                              controller: controler,
+                              onSubmitted: (newpara){
+                                _onSubmit(parameterName,controler.text);
+                              },
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                border: OutlineInputBorder(),
+                              ),
+                              inputFormatters: parameterName == 'rest_time' ? [TimeTextInputFormatter()] : [] ,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 30),
+                Text(
+                  "Credits",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Developers",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "Giraux Maxime\nZambon Yanis",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Sources used for exercises",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+                SizedBox(height: 10),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 14, color: Colors.blue),
+                    children: [
+                      TextSpan(
+                        text: "https://liftmanual.com/",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url1),
+                      ),
+                      TextSpan(text: "\n\n"),
+                      TextSpan(
+                        text: "https://www.muscleandstrength.com/",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()..onTap = () => _launchUrl(url2),
                       ),
                     ],
                   ),
-                );
-              },
+                ),
+              ],
             )
           ),
           
